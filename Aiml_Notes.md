@@ -235,6 +235,7 @@ Proof by **resolution** (or refutation) is a method in **propositional and first
 3. **Applying Resolution**: Repeatedly resolve pairs of clauses to derive new clauses.
 4. **Refutation**: Arrive at a contradiction (empty clause), proving that the original goal must be true.
 
+![alt text](image-3.png)
 ---
 
 ### **Problem Setup:**
@@ -473,6 +474,34 @@ iv)$P(Fire|Report \wedge  Smoke)$
 ![alt text](image-2.png)
 
 Ans. 
+
+### **What is a Bayesian Belief Network (BBN)?**
+
+A **Bayesian Belief Network (BBN)** is a probabilistic graphical model that represents a set of variables and their conditional dependencies using a directed acyclic graph (DAG). It provides a compact representation of a joint probability distribution.
+
+---
+
+### **Key Components of a BBN**:
+1. **Nodes**: Represent random variables (discrete or continuous).
+2. **Edges**: Represent conditional dependencies between variables.
+3. **Conditional Probability Table (CPT)**: Each node is associated with a CPT that quantifies the effects of its parent nodes.
+
+#### **Applications**:
+- Diagnosis systems
+- Predictive analytics
+- Decision-making under uncertainty
+- Natural language processing
+
+---
+
+### **How to Find Probabilities Using a BBN**:
+1. **Identify the Query**: Determine the probability to be calculated (e.g., \( P(A | B) \)).
+2. **Decompose Using Chain Rule**: Break the query into components using the network structure.
+3. **Apply CPTs**: Use the conditional probability tables to evaluate probabilities.
+4. **Marginalization**: Sum over irrelevant variables to compute the required probability.
+5. **Normalization**: Ensure that probabilities sum to 1.
+
+---
 
 
 
