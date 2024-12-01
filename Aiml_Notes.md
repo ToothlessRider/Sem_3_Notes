@@ -35,50 +35,43 @@ Ans.
 
 i) **All VJTI students are smart.**
 Let:
-- \( V(x) \): \( x \) is a VJTI student.
-- \( S(x) \): \( x \) is smart.
+- $V(x)$ : $x$ is a VJTI student.
+- $S(x)$ : $x$ is smart.
 
 **Predicate Logic:**  
-\[
-\forall x \, (V(x) \rightarrow S(x))
-\]
+$\forall x \, (V(x) \rightarrow S(x))$
 
 ---
 
 ii) **Every student except George smiles.**
 Let:
-- \( T(x) \): \( x \) is a student.
-- \( G \): George.
-- \( Sm(x) \): \( x \) smiles.
+- $T(x)$ : $x$ is a student.
+- $G$: George.
+- $Sm(x)$ : $x$ smiles.
 
 **Predicate Logic:**  
-\[
-\forall x \, (T(x) \land x \neq G \rightarrow Sm(x))
-\]
+$\forall x \, (T(x) \land x \neq G \rightarrow Sm(x))
+
 
 ---
 
  iii) **Anyone who loves everyone loves himself.**
 Let:
-- \( L(x, y) \): \( x \) loves \( y \).
+- $L(x, y)$: $x$ loves $y$.
 
 **Predicate Logic:**  
-\[
-\forall x \, \left( \left( \forall y \, L(x, y) \right) \rightarrow L(x, x) \right)
-\]
+$\forall x \, \left( \left( \forall y \, L(x, y) \right) \rightarrow L(x, x) \right)$
 
 ---
 
 iv) **Someone walks and someone talks.**
 Let:
-- \( W(x) \): \( x \) walks.
-- \( T(x) \): \( x \) talks.
+- $W(x)$ : $x$ walks.
+- $T(x)$ : $x$ talks.
 
 **Predicate Logic:**  
-\[
-\exists x \, W(x) \land \exists y \, T(y)
-\]  
-*(Note: \( x \) and \( y \) can be the same person or different individuals.)*
+$\exists x \, W(x) \land \exists y \, T(y)$  
+*(Note: $x$ and $y$ can be the same person or different individuals.)*
 
 --- 
 
