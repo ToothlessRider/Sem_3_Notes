@@ -111,12 +111,12 @@ Hill climbing is an optimization algorithm that starts with an arbitrary solutio
 
 ### **Problems in Hill Climbing**:
 
-1. **Local Maxima/Minima**:
-2. **Plateau**:
-3. **Ridges**:
-4. **No Backtracking**:
-5. **Stochastic Nature**:
-6. **Search Space Dependency**:
+1. **Local Maxima/Minima**
+2. **Plateau**
+3. **Ridges**
+4. **No Backtracking**
+5. **Stochastic Nature**
+6. **Search Space Dependency**
 
 
 --- 
@@ -373,7 +373,7 @@ The **A\*** (A-star) algorithm is a search algorithm used for finding the shorte
 
 | $SDEF -> G$ | 
 | -- | 
-| $4+2+4+3.5+$| 
+| $4+2+4+3.5+0$| 
 | $13.5$ | 
 
 --- 
@@ -450,12 +450,57 @@ Heuristics: $h(n)$ values for each node representing the estimated distance to t
 
 ---
 
-### **Graph and Execution Tree Visualization**
-Let me generate a graph and execution tree for better understanding.
+Q2. c. **Differentiate between GraphPlan and SATPlan**
 
-Here is the graphical representation of the A* algorithm applied to the given problem, showing the shortest path and the evaluation process. Let me know if you'd like further clarification!
+Ans. 
+GraphPlan and SATPlan are both classical planning algorithms used in artificial intelligence to solve planning problems, but they differ in their underlying approaches and methods.
+
+| | GraphPlan | SATPlan |
+| -- | -- | -- |
+|Approach | It is a forward-chaining, graph-based planning algorithm. It operates by constructing a planning graph representing possible states and actions  | SATPlan is a planning algorithm based on Boolean satisfiability (SAT) solvers. It encodes planning problems into propositional logic and utilizes SAT solvers to search for a satisfying assignment of the encoded problem.| 
+| Representation | This graph alternates between levels of actions and states, and it continues to expand until a solution is found. |It transforms the planning problem into a Boolean satisfiability problem by encoding states, actions, and their relationships as logical formulas. |
+| Completeness | GraphPlan is guaranteed to find a solution if one exists in a finite space| Similar to GraphPlan, SATPlan is also complete and hence will find a solution if one exists within the given encoding and problem space.| 
+| Advantages |  It tends to be efficient in certain types of problems and can handle concurrent actions well.| SATPlan can handle problems with a large number of variables and constraints more effectively |
+
+--- 
+
+Q3. a. **What is bayesian belief network? Consider the following Bayesian Belief Network. Find the following probabilities.**
+i) $P(Tamperingl|Report)$
+ii) $P(Fire|Smoke)$
+iii) $P(Tampering|Report \wedge Smoke)$
+iv)$P(Fire|Report \wedge  Smoke)$
+
+![alt text](image-2.png)
+
+Ans. 
 
 
+
+---
+
+
+Q3.b. **What is the AO\* Search Algorithm ? Solve the following question**
+![alt text](<WhatsApp Image 2024-12-01 at 22.59.28_7dc955b2.jpg>)
+Ans. 
+
+> Reference : [AO* Algorithm](https://www.youtube.com/watch?v=mtSn_Lh750g&t=73s)
+
+### What is AO* Algorithm ?
+
+- AO* is a heuristic search algorithm in AI
+- it uses the concept of **AND-OR** graphs to decompose any complex problem given into smaller set of problems which are further solved. 
+
+#### Working of the AO* algorithm 
+
+- It uses the following formula : 
+  - $f(n) = g(n) + h(n)$ 
+- where :
+  - $g(n)$ = Actual cost of traversal from *Initial* to *Current* state
+  - $h(n)$ = Estimated cost of traversal from *Current* to the *Goal* state
+  - $f(n)$ = Actual cost of traversal from *Initial* to *Goal* state
+
+**Question Solving**
+---
 
 ---
 
@@ -496,26 +541,3 @@ The statement ∀y Teaches (Teacher (), y) means "the teacher represented by Tea
 So, Skolemization essentially transforms statements with existential quantifiers into equivalent statements without them, making the logic more manageable and facilitating reasoning.
 
 --- 
-
-Q3. **What is the AO\* Search Algorithm ? Solve the following question**
-![alt text](<WhatsApp Image 2024-12-01 at 22.59.28_7dc955b2.jpg>)
-Ans. 
-
-> Reference : [AO* Algorithm](https://www.youtube.com/watch?v=mtSn_Lh750g&t=73s)
-
-### What is AO* Algorithm ?
-
-- AO* is a heuristic search algorithm in AI
-- it uses the concept of **AND-OR** graphs to decompose any complex problem given into smaller set of problems which are further solved. 
-
-#### Working of the AO* algorithm 
-
-- It uses the following formula : 
-  - $f(n) = g(n) + h(n)$ 
-- where :
-  - $g(n)$ = Actual cost of traversal from *Initial* to *Current* state
-  - $h(n)$ = Estimated cost of traversal from *Current* to the *Goal* state
-  - $f(n)$ = Actual cost of traversal from *Initial* to *Goal* state
-
-**Question Solving**
----
