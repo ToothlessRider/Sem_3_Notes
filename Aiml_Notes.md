@@ -123,7 +123,6 @@ Hill climbing is an optimization algorithm that starts with an arbitrary solutio
 
 Q1. c. **What is Blocks World Problem? Apply the global heuristics and draw a tree to obtain the Goal state from the Initial state for the following problem.**
 
-![alt text](image.png)
 
 Ans. 
 
@@ -132,25 +131,34 @@ There is a table on which some blocks are placed. Some blocks may or may not be 
 Our aim is to change the configuration of the blocks from the Initial State to the Goal State, both of which have been specified in the diagram below.
 
 Given below are the list of predicates as well as their intended meaning
-1. ON (A, B): Block A is on B
-2. ONTABLE(A): A is on table
-3. CLEAR(A): Nothing is on top of A
-4. HOLDING(A): Arm is holding A.
-5. ARMEMPTY: Arm is holding nothing
+1. $ON (A, B)$ : Block A is on B
+2. $ONTABLE(A)$ : A is on table
+3. $CLEAR(A)$ : Nothing is on top of A
+4. $HOLDING(A)$ : Arm is holding A.
+5. $ARMEMPTY$ : Arm is holding nothing
 
 ---
 
 The Robot Arm can perform 4 operations:
-1. STACK(X, Y): Stacking Block X on Block Y
-2. UNSTACK(X, Y): Picking up Block X which is on top of Block Y
-3. PICKUP(X): Picking up Block X which is on top of the table
-4. PUTDOWN(X): Put Block X on the table
+1. $STACK(X, Y)$ : Stacking Block X on Block Y
+2. $UNSTACK(X, Y)$ : Picking up Block X which is on top of Block Y
+3. $PICKUP(X)$ : Picking up Block X which is on top of the table
+4. $PUTDOWN(X)$ : Put Block X on the table
 
+![alt text](image.png)
 
-Initial State : 
+*Initial State* : 
 $ON(A,D)\land ON(D,C)\land ON(C,B)\land ONTABLE(B)$
 
-Goal State : 
+*Operations* :
+1. $UNSTACK(A)$
+2. $UNSTACK(D)$
+3. $UNSTACK(C)$
+4. $STACK(B,A)$
+5. $STACK(C,B)$
+6. $STACK(D,C)$
+
+*Goal State* : 
 $ON(D,C)\land ON(C,B)\land ON(B,A)\land ONTABLE(A)$
 
 --- 
@@ -282,23 +290,15 @@ Each resolution step narrows down possibilities, eventually deriving an empty cl
 
 ---
 
-
----
-
-Q3. b. **Explain A\* algorithm and perform the A\* algorithm on the following graph.**
+Q2. b. **Explain A\* algorithm and perform the A\* algorithm on the following graph.**
 
 Ans. 
 
-While following the A* Algorithm there are certain considerations we need to keep in mind
-
-1. **Initialize** : 
-   - We're going to initialize the set OPEN with a *state* $OPEN = {s}$
-   - CLOSED set will be empty initially $CLOSED = {}$
-   - $g(s) = 0 which means the
-
-### **What is the A* Algorithm?**
+### **What is the A\* Algorithm?**
 
 The **A\*** (A-star) algorithm is a search algorithm used for finding the shortest path from a start node to a goal node in a weighted graph. It combines elements of **Dijkstra’s Algorithm** (which focuses on the shortest path) and **Greedy Best-First Search** (which uses heuristics) to make an informed decision at each step.
+
+
 
 ---
 
@@ -309,7 +309,7 @@ The **A\*** (A-star) algorithm is a search algorithm used for finding the shorte
    - $g(n)$: Cost to reach node $n$ from the start node.
    - $h(n)$: Heuristic estimate of the cost to reach the goal from $n$.
 
-2. **Optimality**: A\* guarantees the shortest path if $h(n)$ is an **admissible heuristic**, meaning it never overestimates the actual cost.
+2. **Optimality**: A\* guarantees the shortest path if $h(n)$ is an **admissible heuristic**, meaning it never over-estimates the actual cost.
 
 3. **Algorithm Steps**:
    1. Initialize an **open list** (nodes to be explored) and a **closed list** (nodes already explored).
@@ -323,12 +323,69 @@ The **A\*** (A-star) algorithm is a search algorithm used for finding the shorte
 
 ---
 
+![alt text](image-1.png)
+
+**Heuristics** ( $h(n)$ ):  
+| **Node** | **Heuristic ($h$)** |
+|----------|-------------------------|
+| $S$  |        11.5        |
+| $A$  | 10.1                      |
+| $B$  | 5.8                       |
+| $C$  | 3.4                       |
+| $D$  | 9.2                      |
+| $E$  | 7.1                       |
+| $F$  | 3.5                     |
+| $G$ | 0 | 
+
+**Goal**: Find the shortest path from $S$ to $G$.
+
+| $S -> A$ | $S -> D$ |
+| -- | -- |
+| $3+10.1$ | $4+9.2$ | 
+| $13.1$ | $13.2$ | 
+
+- So we will go along $SA$
+
+| $SA -> B$ | $SA-> D$ |
+| -- | -- |
+| $3+4+5.8$ | $3+5+9.2$ | 
+| $12.8$ | $18.2$ | 
+- So we will go along $SAB$
+
+| $SAB -> C$ | $SAB-> E$ |
+| -- | -- |
+| $3+4+5+7.1$ | $3+4+4+3.4$ | 
+| $19.1$ | $14.1$ |
+- But since $SABE$ is a dead end we will go back to $S->D$
+
+| $SD -> E$ | $SD-> A$ |
+| -- | -- |
+| $4+2+7.1$| $4+5+10.1$ | 
+| $13.1$ | $19.1$ | 
+- So we will go along $SDE$ 
+
+| $SDE -> F$ | 
+| -- | 
+| $4+2+4+3.5$| 
+| $13.5$ | 
+- The last node left to traverse is $G$ 
+
+
+| $SDEF -> G$ | 
+| -- | 
+| $4+2+4+3.5+$| 
+| $13.5$ | 
+
+--- 
+
 ### **Example Problem: A\* on a Graph**
 
 #### **Graph Setup**:
 Nodes: $A, B, C, D, E, F$.  
 Edges: Weighted connections between nodes.  
 Heuristics: $h(n)$ values for each node representing the estimated distance to the goal node.
+
+![alt text](<WhatsApp Image 2024-12-02 at 00.07.24_056dc98b.jpg>)
 
 #### **Graph Details**:
 | **Edge**     | **Weight** |
@@ -342,7 +399,7 @@ Heuristics: $h(n)$ values for each node representing the estimated distance to t
 | $C \to F$ | 6          |
 | $F \to E$ | 1          |
 
-**Heuristics** ($h(n)$):  
+**Heuristics** ( $h(n)$ ):  
 | **Node** | **Heuristic ($h$)** |
 |----------|-------------------------|
 | $A$  | 7                       |
@@ -406,16 +463,59 @@ Here is the graphical representation of the A* algorithm applied to the given pr
 
 Q1. **What is Situation Calculus ?**
 
-Ans. Situation Calculus is a 
-method of representing planning problems. t is based on first-order logic and is particularly useful in describing actions, their effects, and the evolution of the world state.
+Ans. Situation Calculus is a method of representing planning problems. It is based on first-order logic and is particularly useful in describing actions, their effects, and the evolution of the world state.
 
-Initial state:
+*Initial state*:
 $At(Home, s0) \land \lnot Have(Tea, s0) \land
 \lnot Have(Biscuits, s0) \land \lnot Have(Book, s0)$
 
-Goal state:
-$\exists s At(Home, s) \land Have(Tea, s) \land Have(Biscuits, s) \land Have(Book, s)$
+*Goal state*:
+$\exists s At(Home, s) \land Have(Tea, s)  land Have(Biscuits, s) \land Have(Book, s)$
 
 
+---
 
+Q2.**What is Skolemization? Explain with proper examples.**			
+
+Ans:
+
+Skolemization is a transformation of first-order logic formulae, which removes all existential quantifiers from a formula. The basic idea is to replace existential quantifiers with Skolem functions, which are new functions that depend only on universally quantified variables. This transformation simplifies the logical expression and often makes it easier to work with.
+**Example**: 
+Consider the statement: "There exists a teacher who teaches all courses."
+Symbolically: $∃x ∀y Teaches (x, y)$
+x represents a teacher.
+y represents a course.
+Teaches (x, y) means "teacher x teaches course y."
+
+Skolemization:
+Introduce a new function symbol, say, Teacher, that depends only on universally quantified variables.
+Symbolically: $∀y Teaches (Teacher (), y)$
+Teacher () represents a specific teacher introduced by the Skolemization process.
+The statement ∀y Teaches (Teacher (), y) means "the teacher represented by Teacher () teaches all courses y."
+
+So, Skolemization essentially transforms statements with existential quantifiers into equivalent statements without them, making the logic more manageable and facilitating reasoning.
+
+--- 
+
+Q3. **What is the AO\* Search Algorithm ? Solve the following question**
+![alt text](<WhatsApp Image 2024-12-01 at 22.59.28_7dc955b2.jpg>)
+Ans. 
+
+> Reference : [AO* Algorithm](https://www.youtube.com/watch?v=mtSn_Lh750g&t=73s)
+
+### What is AO* Algorithm ?
+
+- AO* is a heuristic search algorithm in AI
+- it uses the concept of **AND-OR** graphs to decompose any complex problem given into smaller set of problems which are further solved. 
+
+#### Working of the AO* algorithm 
+
+- It uses the following formula : 
+  - $f(n) = g(n) + h(n)$ 
+- where :
+  - $g(n)$ = Actual cost of traversal from *Initial* to *Current* state
+  - $h(n)$ = Estimated cost of traversal from *Current* to the *Goal* state
+  - $f(n)$ = Actual cost of traversal from *Initial* to *Goal* state
+
+**Question Solving**
 ---
