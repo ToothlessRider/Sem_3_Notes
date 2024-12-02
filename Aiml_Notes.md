@@ -475,6 +475,10 @@ iv)$P(Fire|Report \wedge  Smoke)$
 
 Ans. 
 
+
+
+---
+
 ### **What is a Bayesian Belief Network (BBN)?**
 
 A **Bayesian Belief Network (BBN)** is a probabilistic graphical model that represents a set of variables and their conditional dependencies using a directed acyclic graph (DAG). It provides a compact representation of a joint probability distribution.
@@ -495,7 +499,7 @@ A **Bayesian Belief Network (BBN)** is a probabilistic graphical model that repr
 ---
 
 ### **How to Find Probabilities Using a BBN**:
-1. **Identify the Query**: Determine the probability to be calculated (e.g., \( P(A | B) \)).
+1. **Identify the Query**: Determine the probability to be calculated (e.g., $P(A | B)$).
 2. **Decompose Using Chain Rule**: Break the query into components using the network structure.
 3. **Apply CPTs**: Use the conditional probability tables to evaluate probabilities.
 4. **Marginalization**: Sum over irrelevant variables to compute the required probability.
@@ -529,7 +533,171 @@ Ans.
   - $f(n)$ = Actual cost of traversal from *Initial* to *Goal* state
 
 **Question Solving**
+
 ---
+
+
+Q4. a **Explain how to construct a Bayesian Belief networks and different inference techniques in Bayesian Belief networks with diagram.**
+
+Ans. 
+![alt text](image-4.png)
+
+In Bayesian Belief Networks (BBNs), inferences help reason about uncertain events and estimate probabilities based on evidence:
+
+**a) Diagnostic Inference**:  
+- Determines the probability of variables given evidence.  
+- Example: Diagnosing diseases based on observed symptoms.
+
+**b) Causal Inference**:  
+- Examines how changes in one variable affect others.  
+- Example: Predicting how treatment influences recovery.
+
+**c) Intercausal Inference**:  
+- Analyzes relationships between variables sharing a common cause.  
+- Example: Explaining symptoms arising from the same disease.
+
+**d) Mixed Inference**:  
+- Combines diagnostic, causal, and intercausal reasoning in complex scenarios.  
+- Example: Predicting diseases while considering symptoms and treatment effects.
+
+---
+
+Q4.b. **What is minimax strategy? Apply minimax startegy with alpha  beta cut off to the following tree.**
+
+
+Ans. 
+
+### **What is the Minimax Strategy?**
+
+The **Minimax Strategy** is a decision-making algorithm used in adversarial games like chess or tic-tac-toe. The goal is to minimize the possible loss for a worst-case scenario. It assumes:
+- One player (the maximizer) tries to maximize their score.
+- The other player (the minimizer) tries to minimize the score.
+
+The **Minimax algorithm** recursively evaluates the game tree:
+1. **Maximizer Node**: Chooses the maximum value among child nodes.
+2. **Minimizer Node**: Chooses the minimum value among child nodes.
+3. **Leaf Nodes**: Represent terminal states with known scores.
+
+---
+
+### **Alpha-Beta Pruning**
+**Alpha-Beta pruning** optimizes the Minimax algorithm by eliminating branches that cannot influence the final decision.  
+- **Alpha**: The best score the maximizer can guarantee so far.
+- **Beta**: The best score the minimizer can guarantee so far.  
+
+Pruning happens when:
+- $\alpha \geq \beta$, as further exploration won't affect the outcome.
+
+---
+
+### **Steps to Apply Minimax with Alpha-Beta Pruning**
+1. Traverse the tree depth-first.
+2. Update $\alpha$ and $\beta$ at each step.
+3. Prune branches when $\alpha \geq \beta$.
+
+> Reference : [Alpha Beta Pruning](https://www.youtube.com/watch?v=DCNP5L9_t4E)
+ 
+
+![alt text](image-5.png)
+
+### **Step 1: Analyze the tree structure**  
+The tree is structured as follows:  
+- Root node: **MAX** (Maximizer's turn).  
+- Alternating levels: **MIN** and **MAX**.  
+- Leaf nodes: Terminal values to evaluate.  
+- $\alpha = -\infty$, $\beta = \infty$ at the start.  
+
+---
+
+### **Step 2: Apply Minimax with Alpha-Beta Pruning**  
+
+1. Start at the root (**MAX**) and explore the left-most child first.
+2. Use $\alpha$ and $\beta$ to track the best scores for MAX and MIN at each step.
+3. Prune branches where $\alpha \geq \beta$, as further exploration won't affect the decision.
+
+---
+
+### **Step-by-Step Solution**
+
+#### **Level 3: Evaluate Leaf Nodes**
+- Leftmost branch: **10, 5, 7**.  
+- Middle branch: **11, 12, 8, 9**.  
+- Rightmost branch: **5, 12, 11, 12, 9, 8, 7, 10**.
+
+#### **Level 2: Apply Min (MIN Nodes)**
+**Leftmost MIN Node**:  
+Evaluate children: $\min(10, 5, 7) = 5$.  
+Update $\beta = 5$.
+
+**Middle MIN Node**:  
+Evaluate children: $\min(11, 12, 8, 9) = 8$.  
+Update $\beta = 8$.
+
+**Rightmost MIN Node**:  
+Start evaluating children: $\min(5, 12, 11) = 5$.  
+Since $5 < \alpha = 10$, **prune further branches** (no need to evaluate remaining children).
+
+---
+
+#### **Level 1: Apply Max (MAX Nodes)**
+**Root MAX Node**:  
+- Consider MIN values from all branches: $\max(5, 8, 5) = 8$.  
+
+---
+
+### **Final Decision**  
+The root node evaluates to **8**.  
+
+This is the optimal value for the MAX player, achieved by choosing the middle branch.  
+
+```mermaid
+graph TD
+    Root["Root (MAX)"] --> MIN1["MIN Node 1"]
+    Root --> MIN2["MIN Node 2"]
+    Root --> MIN3["MIN Node 3"]
+
+    %% Children of MIN1
+    MIN1 --> L1["10"]
+    MIN1 --> L2["5 (Selected)"]
+    MIN1 --> L3["7"]
+
+    %% Children of MIN2
+    MIN2 --> L4["11"]
+    MIN2 --> L5["12"]
+    MIN2 --> L6["8 (Selected)"]
+    MIN2 --> L7["9"]
+
+    %% Children of MIN3
+    MIN3 --> L8["5 (Selected)"]
+    MIN3 --> L9["12"]
+    MIN3 --> L10["11"]
+    MIN3 --> PRUNE1["Pruned (12)"]
+    MIN3 --> PRUNE2["Pruned (9)"]
+    MIN3 --> PRUNE3["Pruned (8)"]
+    MIN3 --> PRUNE4["Pruned (7)"]
+
+    %% Alpha-Beta Values and Explanation
+    classDef pruned fill:#ffcccc,stroke:#ff0000,stroke-width:2px;
+
+    PRUNE1:::pruned
+    PRUNE2:::pruned
+    PRUNE3:::pruned
+    PRUNE4:::pruned
+
+    %% Root level explanation
+    classDef max fill:#cce5ff,stroke:#007bff,stroke-width:2px;
+    class Root max
+
+    %% MIN Node explanations
+    classDef min fill:#d4edda,stroke:#28a745,stroke-width:2px;
+    class MIN1 min
+    class MIN2 min
+    class MIN3 min
+
+```
+
+
+
 
 ---
 
