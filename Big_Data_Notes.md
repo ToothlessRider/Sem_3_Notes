@@ -9,6 +9,50 @@
 - [Big Data ESE](#big-data-ese)
 - [Table of Contents](#table-of-contents)
   - [Previous Year Questions](#previous-year-questions)
+      - [**1. Data Ingestion Layer**](#1-data-ingestion-layer)
+      - [**2. Data Storage Layer**](#2-data-storage-layer)
+      - [**3. Data Processing Layer**](#3-data-processing-layer)
+      - [**4. Data Analytics Layer**](#4-data-analytics-layer)
+      - [**5. Data Visualization and Access Layer**](#5-data-visualization-and-access-layer)
+      - [**Integration Across Layers**](#integration-across-layers)
+    - [**Block Placement Strategy**](#block-placement-strategy)
+    - [**Example**](#example)
+      - [**Block Placement**:](#block-placement)
+    - [**Key Considerations**](#key-considerations)
+      - [1. **NameNode**](#1-namenode)
+      - [2. **DataNode**:](#2-datanode)
+      - [3. **Block**:](#3-block)
+      - [**Definition of Data Streams**](#definition-of-data-streams)
+      - [**Challenges Faced by Data Streams**](#challenges-faced-by-data-streams)
+      - [**Applications of Data Streams**](#applications-of-data-streams)
+        - [1. **Fraud Detection in Financial Systems**](#1-fraud-detection-in-financial-systems)
+        - [2. **IoT Sensor Monitoring**](#2-iot-sensor-monitoring)
+      - [DGIM ( Datar-Gionis-Indyk-Motwani)](#dgim--datar-gionis-indyk-motwani)
+      - [**Working of DGIM Method**](#working-of-dgim-method)
+        - [**Example**](#example-1)
+      - [**Advantages**](#advantages)
+  - [](#)
+      - [**Step 1: Find Frequent Itemsets**](#step-1-find-frequent-itemsets)
+      - [**Step 2: Compute Confidence for the Rules**](#step-2-compute-confidence-for-the-rules)
+      - [**Confidence Calculations**](#confidence-calculations)
+      - [Definitions](#definitions)
+    - [Given Sentences:](#given-sentences)
+    - [a) **Shingles with (k=2) for each of D1 and D2**](#a-shingles-with-k2-for-each-of-d1-and-d2)
+    - [b) **Shingles with (k=2) for D1 ∪ D3**](#b-shingles-with-k2-for-d1--d3)
+        - [c) **Shingles with (k=3) at the character level for D1 ∪ D2**](#c-shingles-with-k3-at-the-character-level-for-d1--d2)
+      - [Final Results:](#final-results)
+      - [Map Phase:](#map-phase)
+      - [Shuffle and Sort Phase:](#shuffle-and-sort-phase)
+      - [Reduce Phase:](#reduce-phase)
+      - [Final Output:](#final-output)
+      - [**1. Map Task Failures**](#1-map-task-failures)
+        - [**Causes of Map Task Failures**](#causes-of-map-task-failures)
+        - [**Handling Mechanisms**](#handling-mechanisms)
+      - [**2. Job Failures**](#2-job-failures)
+        - [**Causes of Job Failures**](#causes-of-job-failures)
+        - [**Handling Mechanisms**](#handling-mechanisms-1)
+    - [**Pig Architecture Components**](#pig-architecture-components)
+    - [**Diagram: Pig Architecture**](#diagram-pig-architecture)
   - [Pig hive PPT](#pig-hive-ppt)
     - [MapReduce](#mapreduce)
     - [Pig](#pig)
@@ -110,7 +154,57 @@ Ans.
 Q1. c. **With an example, explain the strategy for placement of blocks in HDFS.**
 
 Ans. 
+The **placement of blocks in HDFS (Hadoop Distributed File System)** follows specific strategies to ensure reliability, fault tolerance, and efficient data access. Files in HDFS are divided into **blocks** (default size: 128 MB) and replicated across the cluster (default replication factor: 3). Here's an explanation with an example:
 
+---
+
+### **Block Placement Strategy**
+1. **First Replica**:
+   - Placed on the **same node** where the client writes the data (local write) if possible. This minimizes network usage.
+   
+2. **Second Replica**:
+   - Placed on a **different rack** to ensure data availability even if a rack fails. This improves fault tolerance.
+   
+3. **Third Replica**:
+   - Placed on a **different node in the same rack** as the second replica, balancing fault tolerance and network efficiency.
+
+4. **Subsequent Replicas**:
+   - For replication factors greater than 3, replicas are distributed across nodes and racks for increased redundancy.
+
+---
+
+### **Example**
+- **File**: A 384 MB file is uploaded to HDFS.
+- **Block Division**: File is split into three blocks: B1, B2, B3 (each 128 MB).
+- **Replication Factor**: 3.
+
+#### **Block Placement**:
+1. **Block B1**:
+   - **Replica 1**: Node N1 on Rack R1.
+   - **Replica 2**: Node N2 on Rack R2.
+   - **Replica 3**: Node N3 on Rack R2.
+
+2. **Block B2**:
+   - **Replica 1**: Node N4 on Rack R1.
+   - **Replica 2**: Node N5 on Rack R2.
+   - **Replica 3**: Node N6 on Rack R2.
+
+3. **Block B3**:
+   - **Replica 1**: Node N7 on Rack R1.
+   - **Replica 2**: Node N8 on Rack R2.
+   - **Replica 3**: Node N9 on Rack R2.
+
+---
+
+### **Key Considerations**
+- **Data Locality**:
+  - The first replica ensures faster access for the client by being stored locally.
+- **Rack Awareness**:
+  - Placing replicas on different racks minimizes data loss in case of rack failures.
+- **Load Balancing**:
+  - Replicas are spread across nodes to avoid overloading specific machines.
+
+This strategy ensures HDFS achieves high reliability, fault tolerance, and optimized data access.
 
 ---
 
@@ -245,6 +339,7 @@ Consider a binary stream: `101101`.
 - Approximate results with bounded error (at most 50%).
 
 The DGIM method effectively tracks recent 1s in streams where exact counting is impractical.
+
 ![alt text](image-9.png)
 ---
 
@@ -271,6 +366,73 @@ b) $\{Kiwi\} ->\{Grapes, Starfruit\}$
 c) $\{Grapes\} -> \{Starfruit, Kiwi\}$
 Ans. 
 
+> Youtube video Reference : https://www.youtube.com/watch?v=zi_ydmbWfAs
+
+#### **Step 1: Find Frequent Itemsets**
+1. **Transactions**:
+   $\begin{aligned}
+   &T101: \{Kiwi, Grapes, Starfruit\} \\
+   &T102: \{Kiwi, Gooseberry\} \\
+   &T103: \{Starfruit, Gooseberry\} \\
+   &T104: \{Kiwi, Grapes, Starfruit, Lemon\} \\
+   &T105: \{Lemon, Starfruit\} \\
+   &T106: \{Kiwi, Grapes, Starfruit\}
+   \end{aligned}$
+
+2. **Candidate Generation**:
+   - Count occurrences of single items, pairs, and larger sets to find those meeting the support threshold ($ \text{support} \geq 2$).
+
+| **Itemsets**          | **Support Count** |
+|------------------------|--------------------|
+| $\{Kiwi\}$          | 4                 |
+| $\{Grapes\}$        | 3                 |
+| $\{Starfruit\}$     | 5                 |
+| $\{Lemon\}$         | 2                 |
+| $\{Gooseberry\}$    | 2                 |
+| $\{Kiwi, Grapes\}$  | 3                 |
+| $\{Kiwi, Starfruit\}$ | 4                 |
+| $\{Grapes, Starfruit\}$ | 3              |
+| $\{Kiwi, Grapes, Starfruit\}$ | 3       |
+
+Thus, frequent itemsets include all combinations with support $\geq 2$.
+
+---
+
+#### **Step 2: Compute Confidence for the Rules**
+- **Confidence Formula**:
+ $ \text{Confidence}(\{A\} \to \{B\}) = \frac{\text{Support}(\{A \cup B\})}{\text{Support}(\{A\})}
+   \]
+Thank you for pointing that out. If $\{Kiwi, Starfruit\}$ occurs only **3 times**, I'll recalculate the confidence for the rules based on this correction.
+
+---
+
+#### **Confidence Calculations**
+
+(a) $\{Kiwi, Grapes\} \to \{Kiwi, Grapes, Starfruit\}$
+- $\text{Support}(\{Kiwi, Grapes, Starfruit\}) = 3$
+- $\text{Support}(\{Kiwi, Grapes\}) = 3$
+- $\text{Confidence} = \frac{3}{3} = 100\%$
+- **Selected** (Confidence $\geq 60\%$).
+
+---
+
+(b) $\{Kiwi\} \to \{Grapes, Starfruit\}$
+- $\text{Support}(\{Kiwi, Grapes, Starfruit\}) = 3$
+- $\text{Support}(\{Kiwi\}) = 4$
+- $\text{Confidence} = \frac{3}{4} = 75\%$
+- **Selected** (Confidence $\geq 60\%$).
+
+---
+
+(c) $\{Grapes\} \to \{Starfruit, Kiwi\}$
+- $\text{Support}(\{Kiwi, Grapes, Starfruit\}) = 3$
+- $\text{Support}(\{Grapes\}) = 3$
+- $\text{Confidence} = \frac{3}{3} = 100\%$
+- **Selected** (Confidence $\geq 60\%$).
+
+Rules **(a)**, **(b)**, and **(c)** are still valid as they meet the minimum confidence threshold of 60%.
+
+> Similarly you can calculate various condience rules for all the 2 and 3-itemsets ( you will get a total of 10 valid rules)
 
 ---
 
@@ -283,7 +445,73 @@ b) Shingles with (k=2) for $D1 U D3$
 c) Shingles with (k-3) but at character level for D1 U D2 
 
 Ans. 
+To calculate the Jaccard's similarity for the given sets of shingle-based comparisons, we first need to define **shingles** and **Jaccard's similarity**.
 
+#### Definitions
+1. **Shingles**: A **shingle** is a contiguous subsequence of characters or words of length $k$. For example, given a string "writing", the 2-shingles (k=2) would be: "wr", "ri", "it", "ti", "in", "ng".
+  
+2. **Jaccard's Similarity**: The Jaccard Similarity between two sets $A$ and $B$ is defined as:
+ $\text{Jaccard}(A, B) = \frac{|A \cap B|}{|A \cup B|}$
+   where $|A \cap B|$ is the number of common shingles (intersection), and $|A \cup B|$ is the total number of unique shingles across both sets (union).
+
+### Given Sentences:
+- **D1**: "I am writing."
+- **D2**: "Sam is writing assignment."
+- **D3**: "I could solve all questions of assignment."
+
+Let's calculate the Jaccard's similarity for each part of the problem:
+
+### a) **Shingles with (k=2) for each of D1 and D2**
+
+- **Shingles of D1 (k=2)**:
+  - Sentence: "I am writing."
+  - Shingles: ["I ", " a", "am", "m ", " w", "wr", "ri", "it", "ti", "in", "ng", "g."]
+
+- **Shingles of D2 (k=2)**:
+  - Sentence: "Sam is writing assignment."
+  - Shingles: ["Sa", "am", "m ", " i", "is", "s ", " w", "wr", "ri", "it", "ti", "in", "ng", " a", "as", "ss", "si", "ig", "gn", "nm", "me", "en", "nt", "t."]
+
+- **Jaccard's Similarity for D1 and D2**:
+  - Intersection of shingles: ["am", "m ", " w", "wr", "ri", "it", "ti", "in", "ng"]
+  - Union of shingles: 26 unique shingles (from D1 and D2 combined)
+  
+$\text{Jaccard}(D1, D2) = \frac{9}{26} \approx 0.346$
+
+### b) **Shingles with (k=2) for D1 ∪ D3**
+
+- **Shingles of D1 (k=2)**: Already calculated above.
+  
+- **Shingles of D3 (k=2)**:
+  - Sentence: "I could solve all questions of assignment."
+  - Shingles: ["I ", " c", "co", "ou", "ul", "ld", "d ", " s", "so", "ol", "lv", "ve", "e ", " a", "al", "ll", "l ", " q", "qu", "ue", "es", "st", "ti", "io", "on", "ns", "s ", " o", "of", "f ", " a", "as", "ss", "si", "ig", "gn", "nm", "me", "en", "nt", "t."]
+
+- **Jaccard's Similarity for D1 ∪ D3**:
+  - Union of shingles from D1 and D3: 42 unique shingles.
+  - Intersection of shingles: ["I ", " a", "am", "m ", " s", "so", "ol", "ve", "e ", " a", "al", "ll", "l ", " q", "qu", "ue", "es", "st", "ti", "io", "on", "ns", "s ", " o", "of", "f ", " a", "as", "ss"]
+  
+$\text{Jaccard}(D1 \cup D3) = \frac{15}{42} \approx 0.357$
+
+##### c) **Shingles with (k=3) at the character level for D1 ∪ D2**
+
+- **Shingles of D1 (k=3) at the character level**:
+  - Sentence: "I am writing."
+  - Shingles: ["I a", " am", "am ", "m w", " wr", "wri", "rit", "iti", "tin", "ing", "ng."]
+
+- **Shingles of D2 (k=3) at the character level**:
+  - Sentence: "Sam is writing assignment."
+  - Shingles: ["Sam", "am ", "m i", " is", "is ", "s w", " wr", "wri", "rit", "iti", "tin", "ing", "ng ", "g a", " as", "ass", "ssi", "sig", "ign", "gn ", "n a", " as", "ass", "ssi", "sig", "ign", "gn ", "n t", "t."]
+
+- **Jaccard's Similarity for D1 ∪ D2 (k=3)**:
+  - Union of shingles from D1 and D2: 20 unique shingles.
+  - Intersection of shingles: ["am ", "m w", " wr", "wri", "rit", "iti", "tin", "ing"]
+  
+$\text{Jaccard}(D1 \cup D2) = \frac{8}{20} = 0.4$
+
+
+#### Final Results:
+- **a)** Jaccard's similarity between D1 and D2 with (k=2): **0.346**
+- **b)** Jaccard's similarity between D1 ∪ D3 with (k=2): **0.357**
+- **c)** Jaccard's similarity between D1 ∪ D2 with (k=3) at the character level: **0.4**
 
 ---
 
