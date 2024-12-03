@@ -35,10 +35,10 @@
       - [**Step 1: Find Frequent Itemsets**](#step-1-find-frequent-itemsets)
       - [**Step 2: Compute Confidence for the Rules**](#step-2-compute-confidence-for-the-rules)
       - [**Confidence Calculations**](#confidence-calculations)
-      - [Definitions](#definitions)
-    - [Given Sentences:](#given-sentences)
-    - [a) **Shingles with (k=2) for each of D1 and D2**](#a-shingles-with-k2-for-each-of-d1-and-d2)
-    - [b) **Shingles with (k=2) for D1 ∪ D3**](#b-shingles-with-k2-for-d1--d3)
+        - [Definitions](#definitions)
+        - [Given Sentences:](#given-sentences)
+        - [a) **Shingles with (k=2) for each of D1 and D2**](#a-shingles-with-k2-for-each-of-d1-and-d2)
+        - [b) **Shingles with (k=2) for D1 ∪ D3**](#b-shingles-with-k2-for-d1--d3)
         - [c) **Shingles with (k=3) at the character level for D1 ∪ D2**](#c-shingles-with-k3-at-the-character-level-for-d1--d2)
       - [Final Results:](#final-results)
       - [Map Phase:](#map-phase)
@@ -53,11 +53,18 @@
         - [**Handling Mechanisms**](#handling-mechanisms-1)
     - [**Pig Architecture Components**](#pig-architecture-components)
     - [**Diagram: Pig Architecture**](#diagram-pig-architecture)
+  - [Other questions](#other-questions)
   - [Pig hive PPT](#pig-hive-ppt)
     - [MapReduce](#mapreduce)
     - [Pig](#pig)
       - [Applications of Apache Pig](#applications-of-apache-pig)
     - [Apache Pig vs MapReduec](#apache-pig-vs-mapreduec)
+    - [Flajolet Martin algorithm](#flajolet-martin-algorithm)
+      - [Stepwise Solution](#stepwise-solution)
+      - [Advantages](#advantages-1)
+      - [Disadvantages](#disadvantages)
+      - [Bloom Filter](#bloom-filter)
+      - [False Positives Analysis](#false-positives-analysis)
 
 
 ## Previous Year Questions
@@ -447,21 +454,21 @@ c) Shingles with (k-3) but at character level for D1 U D2
 Ans. 
 To calculate the Jaccard's similarity for the given sets of shingle-based comparisons, we first need to define **shingles** and **Jaccard's similarity**.
 
-#### Definitions
+##### Definitions
 1. **Shingles**: A **shingle** is a contiguous subsequence of characters or words of length $k$. For example, given a string "writing", the 2-shingles (k=2) would be: "wr", "ri", "it", "ti", "in", "ng".
   
 2. **Jaccard's Similarity**: The Jaccard Similarity between two sets $A$ and $B$ is defined as:
  $\text{Jaccard}(A, B) = \frac{|A \cap B|}{|A \cup B|}$
    where $|A \cap B|$ is the number of common shingles (intersection), and $|A \cup B|$ is the total number of unique shingles across both sets (union).
 
-### Given Sentences:
+##### Given Sentences:
 - **D1**: "I am writing."
 - **D2**: "Sam is writing assignment."
 - **D3**: "I could solve all questions of assignment."
 
 Let's calculate the Jaccard's similarity for each part of the problem:
 
-### a) **Shingles with (k=2) for each of D1 and D2**
+##### a) **Shingles with (k=2) for each of D1 and D2**
 
 - **Shingles of D1 (k=2)**:
   - Sentence: "I am writing."
@@ -477,7 +484,7 @@ Let's calculate the Jaccard's similarity for each part of the problem:
   
 $\text{Jaccard}(D1, D2) = \frac{9}{26} \approx 0.346$
 
-### b) **Shingles with (k=2) for D1 ∪ D3**
+##### b) **Shingles with (k=2) for D1 ∪ D3**
 
 - **Shingles of D1 (k=2)**: Already calculated above.
   
@@ -570,6 +577,7 @@ Input for key "MapReduce.": [1]
 Output: ("MapReduce.", 1)
 Input for key "world!": [1]
 Output: ("world!", 1)
+
 #### Final Output:
 **("Hello", 2)**
 **("MapReduce.", 1)**
@@ -753,6 +761,67 @@ Ans.
 
 ---
 
+## Other questions 
+
+Q1. **What is Big Data ?**
+
+Ans. 
+Big Data refers to extremely large and complex datasets that cannot be effectively managed, processed, or analyzed using traditional data processing tools and methods.
+They usually contain : 
+1. Structured data 
+2. Unstructured data 
+
+From sources like **images, videos, sensor data, social media content, etc** 
+
+Characteristics of Big Data:
+1. **Volume**: Encompasses massive data amounts, often in petabytes.
+2. **Velocity**: Data flows in real-time, from sources like IoT and social media.
+3. **Variety**: Diverse data types include structured, unstructured, and semi-structured.
+4. **Variability**: Data can be inconsistent, arriving irregularly.
+5. **Complexity**: Inherent complexity arises from data interconnections and privacy
+
+**Important tip** : These characteristics can double as challenges
+
+--- 
+
+Q2. **Explain the nature of data and it's applications**
+
+Ans. 
+1. **Data Complexity**: The data being collected can be highly complex since it's of different types like **text, audio, video, file formats, etc**
+2. **Data Uniqueness**: big data usually uses unique and previously unused data sources to get **valuable insights**
+3. **Data Temporality**: Financial institutions use real-time data feeds to detect fraudulent
+4. **Data Immutability**: Some Big Data sets are immutable, meaning they cannot be changed once collected.
+5. **Data Bias**: Bias in Big Data can be a concern, as data sources may not represent the entire population or may contain inherent biases.
+
+---
+
+Q2. **Explain structured, unstructured and semi structured data.**
+
+Ans. 
+1. **Structured Data** : 
+   - Structured data is highly organized and follows a specific format or schema.
+   - Usually found in RDBMS and have specific datatype filled rows and columns.
+2. **Unstructured Data** :
+   - Unstructured data lacks a specific structure or format.
+   - It includes text, images, audio, video, and social media content.
+3. **Semi-Strucutred Data**:
+   - Semi-structured data falls between structured and unstructured data.
+   - It has some level of structure, often in the form of tags, labels, or metadata, but it doesn't conform to a rigid schema like structured data.
+
+---
+
+Q3. **What is CAP theorem ?**
+
+Ans.
+The limitations of distributed databases can be described in the so called the **CAP theorem**
+
+1. **Consistency**: every node always sees the same data at any given instance (i.e., strict consistency)
+
+2. **Availabilit**y: the system continues to operate, even if nodes in a cluster crash, or some hardware or software parts are down due to upgrades
+
+3. **Partition Tolerance**: the system continues to operate in the presence of network partitions
+
+---
 
 ## Pig hive PPT
 
@@ -802,3 +871,56 @@ Hence we need to use a higher level Data Flow language, i.e. **Pig Latin**
 | Domain | Need basic SQL knowledge to use | Need high level Java knowledge | 
 | LOC | Uses Multi-Query approach which reduecs LOC | Needs 20 times the LOC to perform same task | 
 | Compilation | No need for compilation | Long Compilation process | 
+
+---
+
+### Flajolet Martin algorithm
+It is used to approximate the number of unique elements ( 1 ) iin a data stream or Database in one pass 
+- It uses less memory space when executing 
+
+#### Stepwise Solution 
+- Select a hash function **H** 
+- Apply that hash functon to each data item in the dataset to get it's Binary representation 
+- Finally we determine the right most zero in each binary string 
+- $r(x) = \text { Length of trailing zeroes in h(x)}$
+  
+
+#### Advantages 
+1. Scalability : 
+   - It can tackle large datasets 
+   - it efficiently estimates the count of unique elements without having to store the entire dataset in memory 
+2. Memory efficiency : 
+   - Demands minimal memory due to smart use of hash functions and bit manipulation
+3. Speed : 
+   - it's high speed amkes it suitable for real life applications
+   - the algo is computationally efficient 
+
+
+#### Disadvantages 
+1. Accuracy
+   - If a precision count is required then this algorithm is not accurate enough
+2. Sensitive to dataset
+   - Accuracy is influenced by the distribution and characteristics of the dataset 
+3. Hash function selection 
+   - Performance and accuracy is affected by the hash function used 
+4. Limited applicability 
+   - Can only identify the number of unique elements 
+
+---
+
+#### Bloom Filter 
+It is a space efficient probabailitic data structure that is used to test if an item is a member of a set 
+
+#### False Positives Analysis
+If we have a bloom filter with $m$ bits and $k$ hash functions, the probability that a certain bit will still be zero after one insertion is 
+![alt text](image-12.png)
+Then, after $n$ insertions, the probability of it still being zero after $n$ insertions is
+![alt text](image-11.png)
+So, that means the probability of a false positive is 
+![alt text](image-10.png)
+
+![alt text](image-13.png)
+
+Q. A bloom filter is composed of a bit array of 216 bits. We are told that the filter is designed to be optimally performing when there are 28 entries.
+
+Given that the filter is filled with 28 entries, what is the expected number of queries one has to perform to perform to get a false positive?
