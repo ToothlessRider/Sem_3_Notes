@@ -41,10 +41,30 @@
         - [b) **Shingles with (k=2) for D1 ∪ D3**](#b-shingles-with-k2-for-d1--d3)
         - [c) **Shingles with (k=3) at the character level for D1 ∪ D2**](#c-shingles-with-k3-at-the-character-level-for-d1--d2)
       - [Final Results:](#final-results)
+    - [**MinHashing Algorithm**](#minhashing-algorithm)
+    - [**Algorithm Steps**:](#algorithm-steps)
+      - [**1. Input**:](#1-input)
+      - [**2. Output**:](#2-output)
+      - [**3. Steps**:](#3-steps)
+    - [**Pseudocode**:](#pseudocode)
+    - [**Task Scheduling in MapReduce**](#task-scheduling-in-mapreduce)
+      - [**1. Components Involved in Scheduling**](#1-components-involved-in-scheduling)
+      - [**2. Steps in Task Scheduling**](#2-steps-in-task-scheduling)
+      - [**a) Job Initialization**](#a-job-initialization)
+      - [**b) Scheduling Map Tasks**](#b-scheduling-map-tasks)
+      - [**c) Scheduling Reduce Tasks**](#c-scheduling-reduce-tasks)
+      - [**d) Handling Failures**](#d-handling-failures)
+      - [**3. Types of Scheduling**](#3-types-of-scheduling)
+      - [**a) FIFO Scheduler**:](#a-fifo-scheduler)
+      - [**b) Fair Scheduler**:](#b-fair-scheduler)
+      - [**c) Capacity Scheduler**:](#c-capacity-scheduler)
+      - [**4. Optimizations in Scheduling**](#4-optimizations-in-scheduling)
+    - [**Example**:](#example-2)
       - [Map Phase:](#map-phase)
       - [Shuffle and Sort Phase:](#shuffle-and-sort-phase)
       - [Reduce Phase:](#reduce-phase)
       - [Final Output:](#final-output)
+      - [**Relational Algebra**](#relational-algebra)
       - [**1. Map Task Failures**](#1-map-task-failures)
         - [**Causes of Map Task Failures**](#causes-of-map-task-failures)
         - [**Handling Mechanisms**](#handling-mechanisms)
@@ -526,12 +546,191 @@ $\text{Jaccard}(D1 \cup D2) = \frac{8}{20} = 0.4$
 Q3. c. **Give an algorithm to explain the working of min hashing Function.**
 
 Ans. 
+### **MinHashing Algorithm**
 
+MinHashing is a technique used to approximate the **Jaccard Similarity** between two sets efficiently. The algorithm works by creating a signature (a small hash representation) for each set that preserves similarity. The steps below describe the process:
+
+---
+
+### **Algorithm Steps**:
+
+#### **1. Input**:
+- Two sets $A$ and $B$ to compare.
+- A universal set $U$ containing all possible elements in $A$ and $B$.
+- $k$: The number of hash functions to use.
+
+#### **2. Output**:
+- MinHash signatures for $A$ and $B$.
+- Approximation of the Jaccard Similarity using the signatures.
+
+#### **3. Steps**:
+
+1. **Represent the Sets**:
+   - Convert $A$ and $B$ into binary vectors or characteristic matrices.
+   - Example:
+     - $U = \{a, b, c, d\}$
+     - $A = \{a, c\}$
+     - $B = \{b, c, d\}$
+     - Characteristic Matrix:
+       | Element | Set $A$ | Set $B$ |
+       |---------|------------|------------|
+       | $a$ | 1          | 0          |
+       | $b$ | 0          | 1          |
+       | $c$ | 1          | 1          |
+       | $d$ | 0          | 1          |
+
+2. **Define Hash Functions**:
+   - Choose $k$ random hash functions $h_1, h_2, ..., h_k$.
+   - Each hash function maps elements in $U$ to integers (e.g., $h(x) = (ax + b) \mod p$, where $p$ is a large prime).
+
+3. **Compute MinHash Values**:
+   - For each hash function $h_i$ and each set $S$:
+     - Apply $h_i$ to all elements in $S$.
+     - Record the **minimum hash value** as the signature for $S$ under $h_i$.
+   - Example:
+     - Hash functions:
+       - $h_1(x) = (2x + 1) \mod 5$
+       - $h_2(x) = (3x + 2) \mod 5$
+     - Hash values for elements:
+       - $h_1(a) = 3, h_1(b) = 0, h_1(c) = 2, h_1(d) = 4$
+       - $h_2(a) = 4, h_2(b) = 1, h_2(c) = 3, h_2(d) = 0$
+     - MinHash signature for $A$:
+       - For $h_1$: MinHash = $\min(\{h_1(a), h_1(c)\}) = 2$
+       - For $h_2$: MinHash = $\min(\{h_2(a), h_2(c)\}) = 3$
+     - Signature for $A$: \([2, 3]\)
+     - Signature for $B$: \([0, 0]\)
+
+4. **Estimate Jaccard Similarity**:
+   - Compare the MinHash signatures for $A$ and $B$.
+   - The similarity is the fraction of matching components in the signatures.
+   - Example:
+     - $\text{Signature of } A = [2, 3]$
+     - $\text{Signature of } B = [0, 0]$
+     - No matches, so estimated similarity = $0\%$.
+
+---
+
+### **Pseudocode**:
+```text
+Input: Sets A, B; k hash functions
+Output: MinHash signatures for A and B
+
+1. Initialize signature matrices MinSig_A[k] and MinSig_B[k] with ∞.
+2. For each hash function h_i (i = 1 to k):
+      For each element x in A:
+          Compute h_i(x)
+          Update MinSig_A[i] = min(MinSig_A[i], h_i(x))
+      For each element x in B:
+          Compute h_i(x)
+          Update MinSig_B[i] = min(MinSig_B[i], h_i(x))
+3. Compute similarity as:
+      Similarity = Number of matching entries in MinSig_A and MinSig_B / k
+4. Return MinSig_A, MinSig_B, Similarity
+```
 ---
 
 Q4. a. **Explain how the tasks are schedule in Map Reduce.**
 
 Ans. 
+### **Task Scheduling in MapReduce**
+
+In the MapReduce framework, task scheduling ensures efficient execution of map and reduce tasks on distributed nodes. It focuses on maximizing resource utilization, minimizing execution time, and handling failures effectively. Below is an explanation of how tasks are scheduled in MapReduce:
+
+---
+
+#### **1. Components Involved in Scheduling**
+- **JobTracker** (Master Node):
+  - Receives job requests from the client.
+  - Splits the job into tasks (map and reduce).
+  - Assigns tasks to TaskTrackers and monitors their progress.
+- **TaskTracker** (Worker Nodes):
+  - Executes map and reduce tasks assigned by the JobTracker.
+  - Reports task status (success, failure, or progress) to the JobTracker.
+
+---
+
+#### **2. Steps in Task Scheduling**
+
+#### **a) Job Initialization**
+- **Job Input Split**: The JobTracker splits input data into smaller chunks called input splits.
+- **Task Creation**:
+  - One **map task** is created for each input split.
+  - The number of **reduce tasks** is determined by the job configuration.
+
+---
+
+#### **b) Scheduling Map Tasks**
+1. **Data Locality**:
+   - Map tasks are scheduled on TaskTrackers that have the input split locally.
+   - If no local TaskTracker is available, the task is scheduled on a node in the same rack or nearby.
+   - **Reason**: Reduces network overhead by utilizing data locality.
+   
+2. **Task Assignment**:
+   - JobTracker checks TaskTrackers for available map slots.
+   - Idle slots are allocated to tasks from the task queue.
+   
+3. **Speculative Execution**:
+   - If a map task is running slower than expected, a speculative copy is executed on another TaskTracker to avoid delays.
+
+---
+
+#### **c) Scheduling Reduce Tasks**
+1. **Shuffle and Sort Phase**:
+   - Reduce tasks start fetching intermediate map outputs from completed map tasks.
+   - Scheduling reduce tasks before all map tasks complete ensures overlap of shuffle/sort and map execution phases.
+
+2. **Task Assignment**:
+   - JobTracker assigns reduce tasks to TaskTrackers with idle reduce slots.
+   - Data locality is less important for reduce tasks since they must pull data from multiple nodes.
+
+---
+
+#### **d) Handling Failures**
+1. **Map Task Failure**:
+   - If a map task fails, the JobTracker reschedules the task on another TaskTracker.
+   - The task is re-executed using the same input split.
+
+2. **Reduce Task Failure**:
+   - If a reduce task fails, the JobTracker reassigns it to another TaskTracker.
+   - Intermediate outputs from map tasks are fetched again.
+
+3. **Node Failure**:
+   - If a TaskTracker fails, all tasks running on it are reassigned to other nodes.
+   - Any lost intermediate outputs are recomputed by re-running affected map tasks.
+
+---
+
+#### **3. Types of Scheduling**
+
+#### **a) FIFO Scheduler**:
+- Tasks are scheduled in the order they are submitted.
+- Simple but may lead to resource underutilization.
+
+#### **b) Fair Scheduler**:
+- Ensures all jobs get a fair share of cluster resources.
+- Useful in multi-user environments.
+
+#### **c) Capacity Scheduler**:
+- Resources are divided into queues, each with a guaranteed capacity.
+- Ideal for large-scale shared clusters.
+
+---
+
+#### **4. Optimizations in Scheduling**
+- **Data Locality**: Prioritizing task execution on nodes with data ensures minimal data transfer.
+- **Speculative Execution**: Resolves stragglers, improving performance.
+- **Backup Tasks**: Duplicate tasks are created to avoid delays caused by slow nodes.
+
+---
+
+### **Example**:
+For a 100 MB input file split into 10 chunks (10 MB each):
+1. 10 map tasks are created, each processing one split.
+2. The JobTracker assigns these tasks to TaskTrackers based on data locality.
+3. Once all map tasks finish, the shuffle and reduce phases begin, with reduce tasks fetching intermediate outputs.
+4. Reduce tasks merge data and produce the final output.
+
+This efficient task scheduling ensures distributed processing and fault tolerance in MapReduce.
 
 ---
 
@@ -592,7 +791,21 @@ a) Union
 b) Intersection
 
 Ans. 
+MapReduce can be used for various functions due to it's parallel computing efficiency as well as file storage redundancy and fault tolerance. 
 
+#### **Relational Algebra**
+One of it's applications is **Relational Algebra**, i.e., many traditional databases involve retrieval of small amounts of data, even though the database itself may be large 
+1. **Selection**: Apply a condition C to each tuple in the relation and produce as output only those tuples that satisfy C. The result of this selection is denoted σC (R).
+2. **Projection**: For some subset S of the attributes of the relation, produce from each tuple only the components for the attributes in S. The result of this projection is denoted πS(R).
+3. **Union, Intersection, and Difference**: These well-known set operations apply to the sets of tuples in two relations that have the same schema.
+
+First, consider the union of two relations. Suppose relations R and S have the same schema. Map tasks will be assigned chunks from either R or S; it doesn’t matter which. The Map tasks don’t really do anything except pass their input tuples as key-value pairs to the Reduce tasks. The latter need only eliminate duplicates as for projection.
+**The Map Function**: Turn each input tuple $t$ into a key-value pair $(t, t)$.
+**The Reduce Function**: Associated with each key t there will be either one or two values. Produce output $(t, t)$ in either case.
+
+To compute the intersection, we can use the same Map function. However, the Reduce function must produce a tuple only if both r task for $t$ should produce $(t, t)$. However, if the value-list associated with key $t$ is just $[t]$, then one of $R$ and $S$ is missing $t$, so we don’t want to produce a tuple for the intersection.
+**The Map Function**: Turn each tuple $t$ into a key-value pair $(t, t)$.
+**The Reduce Function**: If key t has value list $[t, t]$, then produce $(t, t)$. Otherwise, produce nothing.
 
 ---
 
