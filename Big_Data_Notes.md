@@ -54,6 +54,7 @@
     - [**Pig Architecture Components**](#pig-architecture-components)
     - [**Diagram: Pig Architecture**](#diagram-pig-architecture)
   - [Other questions](#other-questions)
+      - [Working](#working)
   - [Pig hive PPT](#pig-hive-ppt)
     - [MapReduce](#mapreduce)
     - [Pig](#pig)
@@ -715,7 +716,40 @@ a) Alter Table
 b) Load Table
 
 Ans. 
+**ALTER TABLE**
+ALTER TABLE table_name 
+[ADD | DROP ] [ IF EXISTS ] COLUMN column_name data_type [ COMMENT 'comment' ]
+[RENAME TO new_table_name]
 
+Example : ALTER TABLE mytable
+ADD COLUMN email STRING COMMENT 'Email Address'
+RENAME TO renamedtable 
+
+**LOAD TABLE**
+LOAD DATA [LOCAL] INPATH 'file_path' [OVERWRITE] INTO TABLE table_name [PARTITION (partition_column = value, ....)]
+
+Example : LOAD DATA LOCAL INPATH "/path/to/data" OVERWRITE INTO TABLE mytable; 
+
+**DROP TABLE**
+sql
+Copy code
+DROP TABLE [IF EXISTS] table_name;
+Example:
+sql
+Copy code
+DROP TABLE IF EXISTS mytable;
+
+**DROP SCHEMA**
+DROP SCHEMA [IF EXISTS] schema_name [CASCADE];
+
+Example:
+DROP SCHEMA IF EXISTS myschema CASCADE;
+
+**DROP DATABASE**
+DROP DATABASE [IF EXISTS] database_name [CASCADE];
+
+Example:
+DROP DATABASE IF EXISTS mydatabase CASCADE;
 
 ---
 
@@ -820,6 +854,29 @@ The limitations of distributed databases can be described in the so called the *
 2. **Availabilit**y: the system continues to operate, even if nodes in a cluster crash, or some hardware or software parts are down due to upgrades
 
 3. **Partition Tolerance**: the system continues to operate in the presence of network partitions
+
+---
+
+Q4. **What is a NoSQL Database?**
+
+Ans.
+- NoSQL Database is used to refer a non-SQL or non relational database.
+- Mechanism for storage and retrieval of data other than tabular relations model
+- It doesn't use tables for storing data
+- Generally used to store big data and real-time web applications
+
+---
+
+Q4. **What is HDFS?**
+
+Ans. 
+Hadoop Distributed File System (HDFS) is the primary storage system used by Hadoop. It is a framework for processing and analyzing Big Data. HDFS is designed to store and manage large datasets across multiple machines while providing fault tolerance.
+
+#### Working 
+- It divides files into smaller blocks and distributes them accross a cluster of machines 
+- Each block is replicated multiple times to ensure fault tolerance.
+- The Master/Slave architecture includes a NameNode (master) for metadata management and DataNodes (slaves) for storing data.
+
 
 ---
 
