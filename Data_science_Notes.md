@@ -9,6 +9,12 @@
 - [data ScienceEESE](#data-scienceeese)
 - [Table of Contents](#table-of-contents)
   - [Previous Year Questions](#previous-year-questions)
+    - [**Step 1: Formulate Hypotheses**](#step-1-formulate-hypotheses)
+    - [**Step 2: Test Statistic**](#step-2-test-statistic)
+    - [**Step 3: Critical Value and Significance Level**](#step-3-critical-value-and-significance-level)
+    - [**Step 4: Decision Rule**](#step-4-decision-rule)
+    - [**Step 5: Conclusion**](#step-5-conclusion)
+    - [**Inference**](#inference)
 
 
 ## Previous Year Questions
@@ -16,7 +22,52 @@
 Q1. a. **The mean of a manufacturing process is known to be 50 with a standard deviation of 2.5. The manufacturing manager may welcome any change is mean value towards higher side but would like to safeguard against decreasing values of mean. He takes a sample of 12 items that gives a mean value of 48.5. What inference should the manager take for the manufacturing process on the basis of sample results? Use 5% level of significance for the purpose.**
 
 Ans. 
+This is a one-tailed hypothesis test (left-tailed) for the population mean since the manufacturing manager is concerned about a **decrease** in the mean value. Here's how the analysis proceeds:
 
+---
+
+### **Step 1: Formulate Hypotheses**
+- Null Hypothesis ($ H_0$ ): The population mean is $\mu_0 = 50$. (No decrease in mean)
+- Alternative Hypothesis ( $H_1$ ): The population mean is $\mu < 50$ . (Mean has decreased)
+
+---
+
+### **Step 2: Test Statistic**
+We use the $z$-test since the population standard deviation is known.
+
+The $z$-test statistic is given by:
+$z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$
+
+Where:
+- $\bar{x} = 48.5$ (Sample mean)
+- $\mu_0 = 50$ (Population mean under $H_0$)
+- $\sigma = 2.5$ (Standard deviation)
+- $n = 12$ (Sample size)
+
+Substitute the values:
+$z = \frac{48.5 - 50}{2.5 / \sqrt{12}} = \frac{-1.5}{0.7217} \approx -2.08$
+
+---
+
+### **Step 3: Critical Value and Significance Level**
+For a one-tailed test at $\alpha = 0.05$, the critical value of $z$ is:
+$z_{\text{critical}} = -1.645 \quad (\text{from the standard normal table}).$
+
+---
+
+### **Step 4: Decision Rule**
+- If $z \leq z_{\text{critical}}$, reject $H_0$ (mean has decreased).
+- Otherwise, fail to reject $H_0$.
+
+---
+
+### **Step 5: Conclusion**
+The calculated $z$-value is $-2.08$, which is **less than** the critical value $-1.645$. Thus, we reject the null hypothesis.
+
+---
+
+### **Inference**
+The sample provides sufficient evidence to conclude that the mean of the manufacturing process has **decreased below 50**. The manager should investigate and take corrective action to safeguard the process.
 
 --- 
 
