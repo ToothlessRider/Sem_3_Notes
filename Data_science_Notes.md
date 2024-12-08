@@ -15,6 +15,10 @@
 - [Important Sampling Distributions](#important-sampling-distributions)
   - [Sampling Error](#sampling-error)
 - [Test of Significance](#test-of-significance)
+  - [Z-Test](#z-test)
+  - [T-test](#t-test)
+  - [Hypothesis](#hypothesis)
+    - [Null and Alternative Hypothesis](#null-and-alternative-hypothesis)
 
 
 ## Syallbus
@@ -407,3 +411,58 @@ To test the significance of the mean of a random sample
 $t = \frac{\overline{X} - \mu}{\sigma_{\overline{X}}}$ where $\overline{X} = \text{Mean of the sample}$ , <br> $\mu = \text{Mean of the universe/population}$ ,  <br> $\sigma_{\overline{X}} = \text{Standard error of the mean worked out as under}$  <br>$\sigma_{\overline{X}} = \frac{\sigma_s}{\sqrt{n}} = \sqrt{\frac{\sum (X_i - \overline{X})^2}{n-1}} \bigg/ \sqrt{n}$ and the degrees of freedom $= (n-1)$ .
 
 *The $z$ -test may as well be applied in case of small sample provided we are given the variance of the population.*
+
+---
+
+### Z-Test 
+
+[Reference](https://www.youtube.com/watch?v=bB-J6_wcGgE)
+
+
+---
+
+
+### T-test 
+
+
+
+---
+
+### Hypothesis 
+Characteristics of hypothesis: Hypothesis must possess the following characteristics:
+(i) Hypothesis should be clear and precise. If the hypothesis is not clear and precise, the
+inferences drawn on its basis cannot be taken as reliable.
+(ii) Hypothesis should be capable of being tested. In a swamp of untestable hypotheses, many
+a time the research programmes have bogged down. Some prior study may be done by
+researcher in order to make hypothesis a testable one. A hypothesis “is testable if other
+deductions can be made from it which, in turn, can be confirmed or disproved by observation.”1
+(iii) Hypothesis should state relationship between variables, if it happens to be a relational
+hypothesis.
+(iv) Hypothesis should be limited in scope and must be specific. A researcher must remember
+that narrower hypotheses are generally more testable and he should develop such hypotheses.
+(v) Hypothesis should be stated as far as possible in most simple terms so that the same is
+easily understandable by all concerned. But one must remember that simplicity of hypothesis
+has nothing to do with its significance.
+(vi) Hypothesis should be consistent with most known facts i.e., it must be consistent with a
+substantial body of established facts. In other words, it should be one which judges accept
+as being the most likely.
+(vii) Hypothesis should be amenable to testing within a reasonable time. One should not use
+even an excellent hypothesis, if the same cannot be tested in reasonable time for one
+cannot spend a life-time collecting data to test it.
+(viii) Hypothesis must explain the facts that gave rise to the need for explanation. This means
+that by using the hypothesis plus other known and accepted generalizations, one should be
+able to deduce the original problem condition. Thus hypothesis must actually explain what
+it claims to explain; it should have empirical reference.
+
+
+#### Null and Alternative Hypothesis 
+In the choice of null hypothesis, the following considerations are
+usually kept in view:
+(a) Alternative hypothesis is usually the one which one wishes to prove and the null hypothesis
+is the one which one wishes to disprove. Thus, a null hypothesis represents the hypothesis
+we are trying to reject, and alternative hypothesis represents all other possibilities.
+(b) If the rejection of a certain hypothesis when it is actually true involves great risk, it is taken
+as null hypothesis because then the probability of rejecting it when it is true is α (the level
+of significance) which is chosen very small.
+(c) Null hypothesis should always be specific hypothesis i.e., it should not state about or
+approximately a certain value.
