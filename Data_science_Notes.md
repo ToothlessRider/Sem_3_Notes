@@ -86,6 +86,9 @@ The sample provides sufficient evidence to conclude that the mean of the manufac
 Q1. b. **Sanju Hotel near the bus stop at Mumbai has been having average sales of 500 coffee cups per day. Because of the development of railway station nearby, it expects to increase its sales. During the first 12 days after the start of the railway station, the daily sales were as under: 550, 570, 490, 615, 505, 580, 570, 460, 600, 580, 530, 526 On the basis of this sample information, can one conclude that Sanju Hotel's sales have increased? Use 5% level of significance.**
 
 Ans .
+Page 214 pdf /203 book 
+
+
 
 ---
 
@@ -97,12 +100,121 @@ iii) between 101 trips and 103 trips?
 
 Ans. 
 
+**Central Limit Theorem (CLT)**
+
+**Given Data**
+1. Population mean ($\mu$) = 100 trips  
+2. Population variance ($\sigma^2$) = 121 trips  
+3. Standard deviation ($\sigma$) = $\sqrt{121} = 11$ trips  
+4. Sample size ($n$) = 36  
+5. Standard error of the mean ($\sigma_{\bar{X}}$) = $\frac{\sigma}{\sqrt{n}} = \frac{11}{\sqrt{36}} = \frac{11}{6} \approx 1.833$.
+
+The sampling distribution of the sample mean follows a normal distribution, even though the population is non-normal, according to the CLT. Hence:
+$\bar{X} \sim N(\mu, \sigma_{\bar{X}}^2) = N(100, 1.833^2).$
+
+---
+
+**Step 1: Convert to the Standard Normal Distribution**
+
+We use the $z$-score formula for the sample mean:
+$z = \frac{\bar{X} - \mu}{\sigma_{\bar{X}}}$
+
+
+**(i) Probability that the sample mean is greater than 105 trips**
+
+Calculate the $z$-score:
+$z = \frac{105 - 100}{1.833} \approx \frac{5}{1.833} \approx 2.73$
+
+Using the standard normal table or a calculator, the cumulative probability up to $z = 2.73$ is:
+$P(Z \leq 2.73) \approx 0.9968$
+
+The probability that the sample mean is greater than 105 is:
+$P(\bar{X} > 105) = 1 - P(Z \leq 2.73) = 1 - 0.9968 = 0.0032$
+
+
+**(ii) Probability that the sample mean is less than 102 trips**
+
+Calculate the $z$-score:
+$z = \frac{102 - 100}{1.833} \approx \frac{2}{1.833} \approx 1.09$
+
+From the standard normal table, the cumulative probability up to $z = 1.09$ is:
+$P(Z \leq 1.09) \approx 0.8621$
+
+Thus, the probability that the sample mean is less than 102 is:
+$P(\bar{X} < 102) \approx 0.8621$
+
+
+**(iii) Probability that the sample mean is between 101 trips and 103 trips**
+
+For $\bar{X} = 101$:
+$z = \frac{101 - 100}{1.833} \approx \frac{1}{1.833} \approx 0.55$
+
+For $\bar{X} = 103$:
+$z = \frac{103 - 100}{1.833} \approx \frac{3}{1.833} \approx 1.64$
+
+From the standard normal table:
+- $P(Z \leq 0.55) \approx 0.7088$
+- $P(Z \leq 1.64) \approx 0.9495$
+
+The probability that the sample mean is between 101 and 103 trips is:
+$P(101 \leq \bar{X} \leq 103) = P(Z \leq 1.64) - P(Z \leq 0.55)$
+$P(101 \leq \bar{X} \leq 103) = 0.9495 - 0.7088 = 0.2407$
+
+
+
+**Final Answers**
+1. $P(\bar{X} > 105) \approx 0.0032$  
+2. $P(\bar{X} < 102) \approx 0.8621$  
+3. $P(101 \leq \bar{X} \leq 103) \approx 0.2407$  
 
 --- 
 
 Q2. a. **The analyst of the study divided the entire population of the schools into schools in rural locations, semi-urban locations and urban locations. The analyst prefers to use proportionate stratified sampling in which the categories of location represent strata. The total number of schools in the state is 8000 which is divided into three strata of rural, semi-urban and urban locations. The number of schools in the rural, semi-urban and urban locations are 4000, 2400 and 1600, respectively. If the proportionate stratified sampling is to be used wih the sampling size of 30, determine the number of sampling units for each category of locations.**
 
 Ans. 
+To determine the number of sampling units for each category using **proportionate stratified sampling**, we allocate the sample size proportionally to the size of each stratum in the population.
+
+---
+
+**Step-by-Step Solution**
+1. **Given Data:**
+   - Total number of schools in the state = $8000$
+   - Number of schools in:
+     - Rural locations = $4000$
+     - Semi-urban locations = $2400$
+     - Urban locations = $1600$
+   - Total sample size = $30$
+
+2. **Proportionate Allocation Formula:**
+   For each stratum, the number of sampling units is calculated as:
+   $n_i = \frac{N_i}{N} \cdot n$
+   where:
+   - $N_i$ = Number of schools in the $i$-th stratum
+   - $N$ = Total number of schools in the population
+   - $n$ = Total sample size
+   - $n_i$ = Number of sampling units for the $i$-th stratum
+
+
+
+**Calculations:**
+
+(i) Rural locations:
+$n_{\text{rural}} = \frac{4000}{8000} \cdot 30 = 0.5 \cdot 30 = 15$
+
+(ii) Semi-urban locations:
+$n_{\text{semi-urban}} = \frac{2400}{8000} \cdot 30 = 0.3 \cdot 30 = 9$
+
+(iii) Urban locations:
+$n_{\text{urban}} = \frac{1600}{8000} \cdot 30 = 0.2 \cdot 30 = 6$
+
+
+
+**Final Allocation:**
+- **Rural locations:** 15 sampling units  
+- **Semi-urban locations:** 9 sampling units  
+- **Urban locations:** 6 sampling units  
+
+This proportional allocation ensures that the sample is representative of the distribution of schools across the three location categories.
 
 ---
 
@@ -417,7 +529,7 @@ $t = \frac{\overline{X} - \mu}{\sigma_{\overline{X}}}$ where $\overline{X} = \te
 ### Z-Test 
 
 [Reference](https://www.youtube.com/watch?v=bB-J6_wcGgE)
-
+![alt text](image-18.png)
 
 ---
 
