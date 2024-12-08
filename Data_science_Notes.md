@@ -1,20 +1,28 @@
-#  data ScienceEESE 
+<h1>Data Science ESE</h1>
+
 > Author : Aaron Augustine
 
 > Star the gist so that I can get a consensus on how many people are using this resource
 > 
 [Github Repo Link for all ESE Notes](https://github.com/ToothlessRider/Sem_3_Notes.git)
 
-# Table of Contents
-- [data ScienceEESE](#data-scienceeese)
+## Table of Contents
 - [Table of Contents](#table-of-contents)
-  - [Previous Year Questions](#previous-year-questions)
-    - [**Step 1: Formulate Hypotheses**](#step-1-formulate-hypotheses)
-    - [**Step 2: Test Statistic**](#step-2-test-statistic)
-    - [**Step 3: Critical Value and Significance Level**](#step-3-critical-value-and-significance-level)
-    - [**Step 4: Decision Rule**](#step-4-decision-rule)
-    - [**Step 5: Conclusion**](#step-5-conclusion)
-    - [**Inference**](#inference)
+- [Syallbus](#syallbus)
+- [Previous Year Questions](#previous-year-questions)
+- [Important Topics](#important-topics)
+  - [Sampling Based Questions](#sampling-based-questions)
+- [Important Sampling Distributions](#important-sampling-distributions)
+  - [Sampling Error](#sampling-error)
+- [Test of Significance](#test-of-significance)
+
+
+## Syallbus
+- PPT 1 - 6 : 
+- PP16 : Population and Samples
+
+---
+
 
 
 ## Previous Year Questions
@@ -26,13 +34,13 @@ This is a one-tailed hypothesis test (left-tailed) for the population mean since
 
 ---
 
-### **Step 1: Formulate Hypotheses**
-- Null Hypothesis ($ H_0$ ): The population mean is $\mu_0 = 50$. (No decrease in mean)
+**Step 1: Formulate Hypotheses**
+- Null Hypothesis ($H_0$ ): The population mean is $\mu_0 = 50$. (No decrease in mean)
 - Alternative Hypothesis ( $H_1$ ): The population mean is $\mu < 50$ . (Mean has decreased)
 
 ---
 
-### **Step 2: Test Statistic**
+**Step 2: Test Statistic**
 We use the $z$-test since the population standard deviation is known.
 
 The $z$-test statistic is given by:
@@ -49,24 +57,24 @@ $z = \frac{48.5 - 50}{2.5 / \sqrt{12}} = \frac{-1.5}{0.7217} \approx -2.08$
 
 ---
 
-### **Step 3: Critical Value and Significance Level**
+**Step 3: Critical Value and Significance Level**
 For a one-tailed test at $\alpha = 0.05$, the critical value of $z$ is:
 $z_{\text{critical}} = -1.645 \quad (\text{from the standard normal table}).$
 
 ---
 
-### **Step 4: Decision Rule**
+**Step 4: Decision Rule**
 - If $z \leq z_{\text{critical}}$, reject $H_0$ (mean has decreased).
 - Otherwise, fail to reject $H_0$.
 
 ---
 
-### **Step 5: Conclusion**
+**Step 5: Conclusion**
 The calculated $z$-value is $-2.08$, which is **less than** the critical value $-1.645$. Thus, we reject the null hypothesis.
 
 ---
 
-### **Inference**
+**Inference**
 The sample provides sufficient evidence to conclude that the mean of the manufacturing process has **decreased below 50**. The manager should investigate and take corrective action to safeguard the process.
 
 --- 
@@ -167,7 +175,42 @@ Ans.
 Q4. c. **Why is data science popular today? Explain in detail.**
 
 Ans. 
+1. **Data Explosion**  
+   - Massive growth in data generation from social media, IoT, e-commerce, etc.  
+   - Need to process and analyze large, complex datasets.  
 
+2. **Business Value**  
+   - Insights from data drive better decision-making.  
+   - Enhances customer experiences, optimizes operations, and increases profitability.  
+
+3. **Advancements in Technology**  
+   - Affordable storage and computational power through cloud computing.  
+   - Tools like Python, R, and libraries like TensorFlow and PyTorch simplify analysis.  
+
+4. **Artificial Intelligence (AI) and Machine Learning (ML)**  
+   - Data science enables AI/ML applications like predictive modeling, recommendation systems, and automation.  
+
+5. **Diverse Applications**  
+   - Used in industries like healthcare, finance, retail, education, and transportation.  
+   - Examples: Disease diagnosis, fraud detection, personalized marketing, and autonomous vehicles.  
+
+6. **Job Opportunities**  
+   - High demand for skilled data scientists due to the rising importance of data-driven strategies.  
+   - Offers lucrative career paths.  
+
+7. **Global Connectivity**  
+   - Digital transformation and globalization require efficient data use for competitive advantage.  
+
+8. **Visualization and Accessibility**  
+   - Data science makes complex data accessible and understandable through visualizations.  
+   - Facilitates communication of insights to non-technical stakeholders.  
+
+9. **Real-Time Decision-Making**  
+   - Enables businesses to act on real-time data, such as dynamic pricing and traffic management.  
+
+10. **Government and Research Usage**  
+   - Governments use data science for policy-making and public services.  
+   - Research in sciences and humanities benefits from large-scale data analysis.  
 
 ---
 
@@ -199,11 +242,168 @@ Ans.
 
 --- 
 
-Q5. c. **What are the different five questions for data preparation? Explain in detail with proper example.**
+Q5. d. **What are the different five questions for data preparation? Explain in detail with proper example.**
 
 Ans. 
+Data preparation is a critical step in any data analysis or machine learning pipeline. It involves cleaning, transforming, and organizing raw data into a format that can be used for analysis or modeling. Below are five important questions for data preparation, explained in detail with examples:
+
+---
+
+**1. What data do we need?**
+This question identifies the specific data required to address the problem or answer the research question. It ensures that you are working with relevant data.
+
+**Example:**
+- **Scenario**: You are predicting housing prices.
+- **Required Data**: Data about house features (e.g., size, number of bedrooms, location, etc.), historical sales prices, and market conditions.
+- **Action**: Collect data from real estate websites, government records, or APIs.
+
+If irrelevant data is included, it may introduce noise, while missing key data can lead to inaccurate results.
+
+---
+
+**2. Is the data clean and accurate?**
+This step checks for data quality issues such as missing values, duplicates, outliers, and inconsistencies.
+
+**Example:**
+- **Scenario**: A dataset includes customer transactions.
+- **Issues**: Missing `transaction_amount`, duplicated rows, or unrealistic values (e.g., negative amounts).
+- **Action**:
+  - Handle missing values (e.g., by imputation or removal).
+  - Remove duplicate records.
+  - Detect and treat outliers using statistical methods like z-scores.
+
+Poor data quality can lead to biased or misleading results.
+
+---
+
+**3. Is the data complete?**
+This examines whether all required attributes and records are present. Missing data can occur due to errors in collection or data transfer.
+
+**Example:**
+- **Scenario**: A survey dataset is missing age for some respondents.
+- **Action**:
+  - Use techniques like mean/mode imputation, or estimate missing values using regression models.
+  - Drop rows or columns if missing data is minimal.
+
+If key data is incomplete, predictions or insights may be unreliable.
+
+---
+
+**4. Does the data need transformation or scaling?**
+Raw data may not be in a usable format, requiring transformations like encoding, normalization, or feature engineering.
+
+**Example:**
+- **Scenario**: You are building a machine learning model using categorical data (e.g., `gender: male/female`).
+- **Action**:
+  - Convert categorical variables into numerical values using techniques like one-hot encoding.
+  - Scale numerical features using standardization ($ z = \frac{x - \mu}{\sigma} $ ) or normalization ($ x' = \frac{x - \text{min}(x)}{\text{max}(x) - \text{min}(x)} $ ).
+
+Transformation ensures all data is in a consistent and comparable format.
+
+---
+
+**5. Are there biases or patterns in the data?**
+Data might contain inherent biases or patterns that could affect analysis or model performance.
+
+**Example:**
+- **Scenario**: A dataset of job applications may contain gender bias (e.g., more male applicants for technical roles).
+- **Action**:
+  - Analyze data distributions to identify biases.
+  - Apply resampling techniques like oversampling or undersampling to balance classes.
+  - Consider domain knowledge to identify and address biases.
+
+Ignoring biases can lead to unfair or unethical decisions in predictive models.
+
+---
+
+**Summary Table of Questions and Examples**
+| Question                           | Example Scenario                  | Key Actions                                       |
+|------------------------------------|-----------------------------------|--------------------------------------------------|
+| **What data do we need?**          | Predicting house prices           | Collect relevant features like size, location.   |
+| **Is the data clean and accurate?**| Customer transactions             | Handle missing/duplicated/outlier records.       |
+| **Is the data complete?**          | Survey data                       | Address missing age values using imputation.     |
+| **Does the data need transformation or scaling?** | Categorical data for ML           | Apply one-hot encoding or normalization.         |
+| **Are there biases or patterns?**  | Job application data              | Balance gender distribution in the dataset.      |
+
 
 
 ---
 
 
+## Important Topics 
+
+### Sampling Based Questions 
+> What exactly is **Sampling** ?
+
+Ans. Sampling may be defined as the selection of some part of a total on the basis of which a judgement or inference about the totality is made. 
+
+> What are the advantages fo a sample study ? 
+
+Ans. A sample study is very useful for the following reasons : 
+1. Sampling can save time and money. A sample study is usually less expensive than a census study and produces results at a relatively faster speed.
+2. Sampling may enable more accurate measurements
+3. Sampling remains the only way when population contains infinitely many members
+4. Sampling remains the only choice when a test involves the destruction of the item under
+study
+
+
+
+The sampling fundamentals are as follows : 
+1. **Universe/Population** : 
+   - Universe refers to the total items or units in a field of inquiry.
+   - Population refers to the total items about which the information is desired.
+   - They can be finite or infinite ( $N$ ) 
+2. **Sampling Frame** : 
+   - The group of cluster units which form the basis of sampling process.
+3. **Sampling Design** : 
+   - It is a definite plan to obtain a sample from teh sampling frame 
+   - IIt is a technique used by the researcher to get sampling units from which we can draw an inference about the population
+4. **Statistic(s) and parameter(s)** : 
+   - **Statistic** is a characteristic of a sample, whereas **paramter** is a characteristic of the population.
+   - Thus, when we work out certain measures such as mean, median, mode or the like ones from samples, then they are called **statistic(s)**.
+   - If we get the same measures from the population we call them **Parameters**
+5. **Sampling Error** :
+   - $\text{Sampling error} = \text{Frame Error} + \text{Chance Error} + \text{Response Error}$ 
+6. **Precision** : 
+   - Precision is the range within which the population average (or other parameter) will lie in accordance with the reliability specified in the confidence level as a percentage of the estimate ± or as a numerical quantity.
+7.  **Confidence level and significance level** : 
+    - The confidence level or reliability is the expected percentage of times that the actual value will fall within the stated precision limits 
+
+## Important Sampling Distributions 
+1. **Sampling Distribution of Mean**
+   - Sampling distribution of mean refers to the probability distribution of all the possible means of random samples of a given size that we take from a population
+   - $N(\mu, \sigma_p)$
+   - $\mu_x = \mu$
+   -  $\sigma_p = \frac{\sigma}{\sqrt{n}}$ where $\mu$ is the mean of the population adn $\sigma_p$ is the standard deviation of the population
+   -  
+
+2. **Sampling Distribution of proportion**
+3. **Student's 'T' Distribution**
+4. **F distribution**
+5. **Chi-square Distribution**
+
+
+---
+
+### Sampling Error 
+
+Q1. **What is Data Science, Why multiple definition?**
+
+Ans. Data science is a multidisciplinary field that uses techniques, algorithms, and tools to extract insights and knowledge from data, enabling data-driven decision-making and predictions.
+Uses the following to do so : 
+1. Data Analysis 
+2. Statistics 
+3. Machine learning 
+
+
+---
+
+## Test of Significance
+
+![Test of significance](image-17.png)
+
+---
+To test the significance of the mean of a random sample
+$t = \frac{\overline{X} - \mu}{\sigma_{\overline{X}}}$ where $\overline{X} = \text{Mean of the sample}$ , <br> $\mu = \text{Mean of the universe/population}$ ,  <br> $\sigma_{\overline{X}} = \text{Standard error of the mean worked out as under}$  <br>$\sigma_{\overline{X}} = \frac{\sigma_s}{\sqrt{n}} = \sqrt{\frac{\sum (X_i - \overline{X})^2}{n-1}} \bigg/ \sqrt{n}$ and the degrees of freedom $= (n-1)$ .
+
+*The $z$ -test may as well be applied in case of small sample provided we are given the variance of the population.*
