@@ -10,6 +10,12 @@
 - [Table of Contents](#table-of-contents)
 - [Syallbus](#syallbus)
 - [Previous Year Questions](#previous-year-questions)
+- [At the 90% confidence level, the data does not provide sufficient evidence to reject the claim that 60% of students like the course. Therefore, the course review committee cannot conclude that the proportion of students who like the course is different from 60%.](#at-the-90-confidence-level-the-data-does-not-provide-sufficient-evidence-to-reject-the-claim-that-60-of-students-like-the-course-therefore-the-course-review-committee-cannot-conclude-that-the-proportion-of-students-who-like-the-course-is-different-from-60)
+  - [**Statistical Modeling of Data: Key Points**](#statistical-modeling-of-data-key-points)
+  - [**Steps in Statistical Modeling:**](#steps-in-statistical-modeling)
+  - [**Example: Linear Regression Model for House Prices**](#example-linear-regression-model-for-house-prices)
+  - [**Conclusion**](#conclusion)
+- [Statistical modeling helps quantify relationships between variables and make predictions. Linear regression is an example used for predicting house prices based on features like square footage and number of bedrooms.](#statistical-modeling-helps-quantify-relationships-between-variables-and-make-predictions-linear-regression-is-an-example-used-for-predicting-house-prices-based-on-features-like-square-footage-and-number-of-bedrooms)
 - [Important Topics](#important-topics)
   - [Sampling Based Questions](#sampling-based-questions)
 - [Important Sampling Distributions](#important-sampling-distributions)
@@ -801,14 +807,89 @@ Ans.
 Q5. b. **You are teaching an online course and based on your internal surveys claim that 60% of your students like your course. A course review committee is skeptical about your claims and wants to test them. How would they go about this. Out of 100 students 62 students said yes. The confidence level is 90%**
 
 Ans. 
+To test the claim that 60% of students like the course, we can conduct a hypothesis test for the population proportion using the **z-test**.
 
+**Step 1: State the Hypotheses**
+- **Null Hypothesis (H₀)**: The proportion of students who like the course is 60%, i.e., $p = 0.60$.
+- **Alternative Hypothesis (H₁)**: The proportion of students who like the course is not 60%, i.e., $p \neq 0.60$.
+
+This is a **two-tailed** test because we're checking if the proportion is different (either higher or lower) than 60%.
+
+**Step 2: Collect the Sample Data**
+- Sample size $n = 100$
+- Number of students who like the course $x = 62$
+- Sample proportion $\hat{p} = \frac{x}{n} = \frac{62}{100} = 0.62$
+
+**Step 3: Compute the Standard Error**
+The standard error (SE) for the proportion is calculated using the formula:
+$SE = \sqrt{\frac{p(1 - p)}{n}}$
+Where $p = 0.60$ (the population proportion under the null hypothesis) and $n = 100$.
+
+$SE = \sqrt{\frac{0.60(1 - 0.60)}{100}} = \sqrt{\frac{0.60 \times 0.40}{100}} = \sqrt{\frac{0.24}{100}} = \sqrt{0.0024} = 0.049$
+
+**Step 4: Calculate the Test Statistic (z-value)**
+The test statistic (z) is calculated as:
+$z = \frac{\hat{p} - p}{SE}$
+Substitute the known values:
+$z = \frac{0.62 - 0.60}{0.049} = \frac{0.02}{0.049} \approx 0.41$
+
+**Step 5: Find the Critical Value**
+For a **90% confidence level**, the significance level $\alpha = 0.10$. Since it's a two-tailed test, the critical value corresponds to $\alpha/2 = 0.05$ on each tail.
+
+From standard normal distribution tables, the critical z-value for $\alpha = 0.05$ (two-tailed) is $\pm 1.645$.
+**Step 6: Compare the z-value with Critical Values**
+- The calculated z-value is $0.41$.
+- The critical z-values are $\pm 1.645$.
+
+Since $0.41$ lies between $-1.645$ and $1.645$, we **fail to reject the null hypothesis**.
+
+**Conclusion**
+At the 90% confidence level, the data does not provide sufficient evidence to reject the claim that 60% of students like the course. Therefore, the course review committee cannot conclude that the proportion of students who like the course is different from 60%.
 ---
 
 Q5. c. **Explain statistical modelling of data in detail with an appropriate example**
 
 Ans. 
 
+### **Statistical Modeling of Data: Key Points**
 
+- **Definition**: Statistical modeling involves creating a mathematical representation to describe relationships between variables in a dataset. It helps make predictions or draw inferences.
+
+---
+
+### **Steps in Statistical Modeling:**
+1. **Define the Problem**: Clarify the objective (e.g., prediction, explanation).
+2. **Collect Data**: Gather quality data for the analysis.
+3. **Choose Model Type**: Select an appropriate model (e.g., linear regression, logistic regression).
+4. **Estimate Parameters**: Use data to estimate model parameters (e.g., regression coefficients).
+5. **Evaluate the Model**: Check model fit using metrics like R-squared and p-values.
+6. **Make Predictions**: Use the model to predict outcomes or draw conclusions.
+
+---
+
+### **Example: Linear Regression Model for House Prices**
+- **Variables**:
+  - Dependent: House price ( $Y$ ).
+  - Independent: Square footage ( $X_1$ ) and number of bedrooms ($X_2$ ).
+  
+- **Model**:
+  $Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon$
+  where $\beta_0$ , $\beta_1$ , and $\beta_2$  are the parameters to be estimated.
+
+- **Estimated Model**:
+  $Y = 50,000 + 200X_1 + 10,000X_2$
+  This indicates the price increases by $200 per square foot and $10,000 per bedroom.
+
+- **Evaluation**: Use metrics like R-squared (explains variability) and p-values (check significance of parameters).
+
+- **Prediction**: For a 1,500 sq ft house with 3 bedrooms:
+  $Y = 50,000 + 200(1500) + 10,000(3) = 380,000$
+  The predicted price is $380,000.
+
+---
+
+### **Conclusion**
+Statistical modeling helps quantify relationships between variables and make predictions. Linear regression is an example used for predicting house prices based on features like square footage and number of bedrooms.
 --- 
 
 Q5. d. **What are the different five questions for data preparation? Explain in detail with proper example.**
