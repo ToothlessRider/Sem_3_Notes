@@ -10,12 +10,6 @@
 - [Table of Contents](#table-of-contents)
 - [Syallbus](#syallbus)
 - [Previous Year Questions](#previous-year-questions)
-- [At the 90% confidence level, the data does not provide sufficient evidence to reject the claim that 60% of students like the course. Therefore, the course review committee cannot conclude that the proportion of students who like the course is different from 60%.](#at-the-90-confidence-level-the-data-does-not-provide-sufficient-evidence-to-reject-the-claim-that-60-of-students-like-the-course-therefore-the-course-review-committee-cannot-conclude-that-the-proportion-of-students-who-like-the-course-is-different-from-60)
-  - [**Statistical Modeling of Data: Key Points**](#statistical-modeling-of-data-key-points)
-  - [**Steps in Statistical Modeling:**](#steps-in-statistical-modeling)
-  - [**Example: Linear Regression Model for House Prices**](#example-linear-regression-model-for-house-prices)
-  - [**Conclusion**](#conclusion)
-- [Statistical modeling helps quantify relationships between variables and make predictions. Linear regression is an example used for predicting house prices based on features like square footage and number of bedrooms.](#statistical-modeling-helps-quantify-relationships-between-variables-and-make-predictions-linear-regression-is-an-example-used-for-predicting-house-prices-based-on-features-like-square-footage-and-number-of-bedrooms)
 - [Important Topics](#important-topics)
   - [Sampling Based Questions](#sampling-based-questions)
 - [Important Sampling Distributions](#important-sampling-distributions)
@@ -845,19 +839,18 @@ Since $0.41$ lies between $-1.645$ and $1.645$, we **fail to reject the null hyp
 
 **Conclusion**
 At the 90% confidence level, the data does not provide sufficient evidence to reject the claim that 60% of students like the course. Therefore, the course review committee cannot conclude that the proportion of students who like the course is different from 60%.
+
 ---
 
 Q5. c. **Explain statistical modelling of data in detail with an appropriate example**
 
 Ans. 
 
-### **Statistical Modeling of Data: Key Points**
+**Statistical Modeling of Data: Key Points**
 
 - **Definition**: Statistical modeling involves creating a mathematical representation to describe relationships between variables in a dataset. It helps make predictions or draw inferences.
 
----
-
-### **Steps in Statistical Modeling:**
+**Steps in Statistical Modeling:**
 1. **Define the Problem**: Clarify the objective (e.g., prediction, explanation).
 2. **Collect Data**: Gather quality data for the analysis.
 3. **Choose Model Type**: Select an appropriate model (e.g., linear regression, logistic regression).
@@ -865,9 +858,8 @@ Ans.
 5. **Evaluate the Model**: Check model fit using metrics like R-squared and p-values.
 6. **Make Predictions**: Use the model to predict outcomes or draw conclusions.
 
----
 
-### **Example: Linear Regression Model for House Prices**
+**Example: Linear Regression Model for House Prices**
 - **Variables**:
   - Dependent: House price ( $Y$ ).
   - Independent: Square footage ( $X_1$ ) and number of bedrooms ($X_2$ ).
@@ -886,10 +878,10 @@ Ans.
   $Y = 50,000 + 200(1500) + 10,000(3) = 380,000$
   The predicted price is $380,000.
 
----
 
-### **Conclusion**
+**Conclusion**
 Statistical modeling helps quantify relationships between variables and make predictions. Linear regression is an example used for predicting house prices based on features like square footage and number of bedrooms.
+
 --- 
 
 Q5. d. **What are the different five questions for data preparation? Explain in detail with proper example.**
