@@ -587,11 +587,26 @@ So, the ciphertext corresponding to the plaintext **"Hide the gold"** using the 
 
 **Ans.**
 
+To achieve **confidentiality** and **authentication**:  
+
+1. **Sender:**  
+   - Encrypt the message with the recipient's **public key** (ensures confidentiality).  
+   - Hash the message and encrypt the hash with the sender's **private key** to create a digital signature (ensures authentication).  
+   - Send the encrypted message and the signature.  
+
+2. **Recipient:**  
+   - Verify the signature using the sender's **public key**.  
+   - Decrypt the message using their **private key**.  
+
+This ensures only the recipient can read the message (confidentiality) and confirms the sender's identity (authentication).
+
 ---
 
 **Q4. b. Give the formal and mathematical definition of a digital signature.**
 
 **Ans.**
+
+
 
 ---
 
