@@ -23,11 +23,7 @@ To create a decision boundary for the **OR** function implemented using a McCull
 
 ### **OR Function**
 The output of the OR function is defined as:
-$$y = 
-\begin{cases} 
-1 & \text{if } x_1 + x_2 + x_3 \geq \theta, \\ 
-0 & \text{if } x_1 + x_2 + x_3 < \theta.
-\end{cases}$$
+![alt text](image-36.png)
 
 For an OR gate, the threshold ( $\theta$ ) is **1** because at least one input must be 1 for the output to be 1.
 
@@ -224,11 +220,7 @@ Ans.
 6. **Leaky ReLU (Rectified Linear Unit) Activation Function**  
 
    - **Formula**:  
-      $$\text{Leaky ReLU}(x) = 
-      \begin{cases} 
-      x & \text{if } x > 0, \\
-      \alpha x & \text{if } x \leq 0, 
-      \end{cases}$$
+![alt text](image-35.png)
    - **Range**:  
    $(- \infty, \infty)$ .  
 
@@ -711,11 +703,7 @@ The predicted class is **Class 1** since it has the highest probability ($P_1 = 
 
 Q5. b. **The following diagram depicts the RNN, where xt, ht-1, ht, and yt are all scalars, as a state machine. Suppose that f and g are the activation functions for the first layer, second layer hidden units and output respectively. g(x) is mod of x. Write the equations for the hidden states and output at each time step. Given input 0110 what is the output?** 
 **Given that, W * 1 = 1 W * 2 = 1 , b * 2 = - 1 , W * 3 = 1 , b * 3 = 0 , W * 4 = 1 b * 4 = 0 and other parameters initialized to zero.**
-$f(x) = 
-\begin{cases} 
-0 & \text{if } x < 0, \\
-1 & \text{if } x \geq 0.
-\end{cases}$
+![alt text](image-37.png)
 
 $g(x) = |x|$
 
@@ -727,12 +715,7 @@ The diagram represents a simple Recurrent Neural Network (RNN) structure. Let's 
 
 
 **Given**:
-- $f(x)$ :
-  $f(x) =
-  \begin{cases}
-    0 & \text{if } x < 0, \\
-    1 & \text{if } x \geq 0.
-  \end{cases}$ 
+![alt text](image-37.png)
 - $g(x) = |x|$ : Absolute value of $x$ .
 - Weights and biases:
   - $W_1 = 1$ , $W_2 = 1$ , $b_2 = -1$ ,
