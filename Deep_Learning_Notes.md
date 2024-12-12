@@ -23,10 +23,7 @@ To create a decision boundary for the **OR** function implemented using a McCull
 
 ### **OR Function**
 The output of the OR function is defined as:
-$y = \begin{cases} 
-1 & \text{if } x_1 + x_2 + x_3 \geq \theta, \\
-0 & \text{otherwise.}
-\end{cases}$
+$y = \begin{cases}  1 & \text{if } x_1 + x_2 + x_3 \geq \theta, \\ 0 & \text{otherwise.} \end{cases}$
 
 For an OR gate, the threshold ( $\theta$ ) is **1** because at least one input must be 1 for the output to be 1.
 
@@ -885,5 +882,7 @@ ResNet-50 is a commonly used version with 50 layers. It uses:
 
 
 --- 
+
+Q. 
 
 
