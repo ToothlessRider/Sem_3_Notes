@@ -96,15 +96,15 @@ Adam (Adaptive Moment Estimation) is a popular optimization algorithm in Deep Le
 
 2. **Formulas**:  
    - **Moment Estimates**:  
-     - \( m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t \) (Exponential moving average of gradients).  
-     - \( v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \) (Exponential moving average of squared gradients).  
+     - $m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t$  (Exponential moving average of gradients).  
+     - $v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2$  (Exponential moving average of squared gradients).  
    - **Bias Correction**:  
-     - \( \hat{m}_t = \frac{m_t}{1 - \beta_1^t} \), \( \hat{v}_t = \frac{v_t}{1 - \beta_2^t} \).  
+     - $\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$ , $\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$ .  
    - **Parameter Update**:  
-     - \( \theta_t = \theta_{t-1} - \frac{\alpha \hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} \).
+     - $\theta_t = \theta_{t-1} - \frac{\alpha \hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$ .
 
 3. **Hyperparameters**:  
-   - Learning rate \( \alpha \), \( \beta_1 \) (default 0.9), \( \beta_2 \) (default 0.999), and \( \epsilon \) (default \( 10^{-8} \)) for numerical stability.
+   - Learning rate $\alpha$ , $\beta_1$  (default 0.9), $\beta_2$  (default 0.999), and $\epsilon$  (default $10^{-8}$ ) for numerical stability.
 
 4. **Advantages**:  
    - Combines advantages of Momentum (smooth convergence) and RMSProp (adaptive learning rates).  
@@ -127,28 +127,24 @@ The McCulloch-Pitts neuron is a simplified computational model of a biological n
 
 1. **Structure**:  
    - Consists of **inputs**, **weights**, and a **threshold**.  
-   - Inputs are binary (\(0\) or \(1\)), and weights determine the importance of each input.  
+   - Inputs are binary ($0$  or $1$ ), and weights determine the importance of each input.  
 
 2. **Summation**:  
    - Calculates the weighted sum of inputs:  
-     \[
-     \text{Net Input} = \sum_{i=1}^n (w_i \cdot x_i)
-     \]  
-     where \(x_i\) are inputs, and \(w_i\) are weights.  
+     $\text{Net Input} = \sum_{i=1}^n (w_i \cdot x_i)$  
+     where $x_i$  are inputs, and $w_i$  are weights.  
 
 3. **Activation Function**:  
-   - Compares the net input to a fixed **threshold** (\(T\)):  
-     \[
-     \text{Output} = 
+   - Compares the net input to a fixed **threshold** ($T$ ):  
+     $\text{Output} = 
      \begin{cases} 
      1 & \text{if Net Input} \geq T \\ 
      0 & \text{otherwise} 
-     \end{cases}
-     \]  
+     \end{cases}$  
    - This step mimics a binary "firing" mechanism.  
 
 4. **Binary Outputs**:  
-   - The output is also binary (\(0\) or \(1\)), representing whether the neuron "fires" or not.  
+   - The output is also binary ($0$  or $1$ ), representing whether the neuron "fires" or not.  
 
 5. **Logical Computation**:  
    - It models simple logical operations like AND, OR, and NOT using specific configurations of weights and thresholds.  
@@ -166,11 +162,22 @@ Ans.
 
 ### **Activation Functions**  
 
+**Regression Tasks**:
+- For regression tasks where the goal is to predict a continuous value, often the output layer has a linear activation function. This allows the network to produce unbounded real values as output.
+
+**Binary Classification**:
+- In binary classification problems, where the output is a binary decision (0 or 1), the sigmoid activation function is commonly used. It squashes the output values to the range [0, 1], which can be interpreted as probabilities.
+
+**Multi-Class Classification**:
+- For multi-class classification tasks where the goal is to classify inputs into more than two classes, the softmax activation function is often used. Softmax converts the network's output into a probability distribution over multiple classes.
+
+
+---
+
+
 1. **Sigmoid Activation Function**  
    - **Formula**:  
-     \[
-     \sigma(x) = \frac{1}{1 + e^{-x}}
-     \]  
+     $\sigma(x) = \frac{1}{1 + e^{-x}}$  
    - **Range**: (0, 1).  
    - **Use Case**: Binary classification problems where output represents probabilities.  
    - **Drawback**: Prone to vanishing gradient issues during backpropagation.
@@ -180,9 +187,7 @@ Ans.
 
 2. **Softmax Activation Function**  
    - **Formula**:  
-     \[
-     \text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{n} e^{x_j}}
-     \]  
+     $\text{Softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{n} e^{x_j}}$  
    - **Range**: (0, 1), and the outputs sum to 1.  
    - **Use Case**: Multiclass classification tasks to interpret outputs as probabilities.  
 
@@ -190,10 +195,8 @@ Ans.
 
 3. **Linear Activation Function**  
    - **Formula**:  
-     \[
-     f(x) = x
-     \]  
-   - **Range**: All real numbers (\(-\infty, \infty\)).  
+     $f(x) = x$  
+   - **Range**: All real numbers ($-\infty, \infty$ ).  
    - **Use Case**: Regression problems where continuous values are predicted.  
    - **Advantage**: Allows unrestricted output values.  
 
@@ -201,9 +204,7 @@ Ans.
 
 4. **Tanh (Hyperbolic Tangent) Activation Function**  
    - **Formula**:  
-     \[
-     \text{Tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
-     \]  
+     $\text{Tanh}(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$  
    - **Range**: (-1, 1).  
    - **Use Case**: Outputs requiring normalized values around 0.  
    - **Drawback**: Similar to Sigmoid, it can suffer from vanishing gradients.  
@@ -212,10 +213,8 @@ Ans.
 
 5. **ReLU (Rectified Linear Unit) Activation Function**  
    - **Formula**:  
-     \[
-     \text{ReLU}(x) = \max(0, x)
-     \]  
-   - **Range**: [0, \( \infty \)).  
+     $\text{ReLU}(x) = \max(0, x)$  
+   - **Range**: [0, $\infty$ ).  
    - **Use Case**: Occasionally used in output layers for tasks like image pixel intensity prediction.  
    - **Limitation**: Outputs non-negative values only, limiting its utility in specific cases.  
 
@@ -224,17 +223,15 @@ Ans.
 6. **Leaky ReLU (Rectified Linear Unit) Activation Function**  
 
    - **Formula**:  
-   \[
-   \text{Leaky ReLU}(x) = 
+   $\text{Leaky ReLU}(x) = 
    \begin{cases} 
    x & \text{if } x > 0 \\ 
    \alpha x & \text{if } x \leq 0 
-   \end{cases}
-   \]  
-   Here, \( \alpha \) (typically a small positive value like 0.01) controls the slope for negative inputs.
+   \end{cases}$
+   Here, $\alpha$  (typically a small positive value like 0.01) controls the slope for negative inputs.
    
    - **Range**:  
-   \((- \infty, \infty)\).  
+   $(- \infty, \infty)$ .  
 
    - **Use Case**:  
      - Applied in hidden layers of deep neural networks to address the "dying ReLU" problem, where neurons become inactive for negative inputs.  
@@ -243,7 +240,7 @@ Ans.
      - Unlike standard ReLU, Leaky ReLU allows small gradients for negative inputs, preventing the network from completely ignoring these inputs.  
 
    - **Limitation**:  
-     - The slope \( \alpha \) for negative values is fixed and may not always be optimal for all datasets or tasks.  
+     - The slope $\alpha$  for negative values is fixed and may not always be optimal for all datasets or tasks.  
 
 ![alt text](image-30.png)
 
@@ -302,49 +299,35 @@ Ans.
 We calculate the output dimensions after each layer of the convolutional neural network:
 
 1. **Input Dimensions**  
-   - Input: \(39 \times 39 \times 3\) (Height \(H\), Width \(W\), Channels \(C\)).
+   - Input: $39 \times 39 \times 3$  (Height $H$ , Width $W$ , Channels $C$ ).
 
 2. **Layer 1**  
-   - **Filter Size**: \(3 \times 3\), **Number of Filters**: \(10\), **Stride**: \(1\), **Padding**: \(0\).  
+   - **Filter Size**: $3 \times 3$ , **Number of Filters**: $10$ , **Stride**: $1$ , **Padding**: $0$ .  
    - **Output Dimensions**:
-     \[
-     H' = \frac{H - F + 2P}{S} + 1 = \frac{39 - 3 + 0}{1} + 1 = 37
-     \]
-     \[
-     W' = \frac{W - F + 2P}{S} + 1 = \frac{39 - 3 + 0}{1} + 1 = 37
-     \]
-   - Channels: \(10\).  
-   - **Output**: \(37 \times 37 \times 10\).
+     $H' = \frac{H - F + 2P}{S} + 1 = \frac{39 - 3 + 0}{1} + 1 = 37$
+     $W' = \frac{W - F + 2P}{S} + 1 = \frac{39 - 3 + 0}{1} + 1 = 37$
+   - Channels: $10$ .  
+   - **Output**: $37 \times 37 \times 10$ .
 
 3. **Layer 2**  
-   - **Filter Size**: \(5 \times 5\), **Number of Filters**: \(20\), **Stride**: \(2\), **Padding**: \(0\).  
+   - **Filter Size**: $5 \times 5$ , **Number of Filters**: $20$ , **Stride**: $2$ , **Padding**: $0$ .  
    - **Output Dimensions**:
-     \[
-     H' = \frac{H - F + 2P}{S} + 1 = \frac{37 - 5 + 0}{2} + 1 = 17
-     \]
-     \[
-     W' = \frac{W - F + 2P}{S} + 1 = \frac{37 - 5 + 0}{2} + 1 = 17
-     \]
-   - Channels: \(20\).  
-   - **Output**: \(17 \times 17 \times 20\).
+     $H' = \frac{H - F + 2P}{S} + 1 = \frac{37 - 5 + 0}{2} + 1 = 17$
+     $W' = \frac{W - F + 2P}{S} + 1 = \frac{37 - 5 + 0}{2} + 1 = 17$
+   - Channels: $20$ .  
+   - **Output**: $17 \times 17 \times 20$ .
 
 4. **Layer 3**  
-   - **Filter Size**: \(5 \times 5\), **Number of Filters**: \(40\), **Stride**: \(2\), **Padding**: \(0\).  
+   - **Filter Size**: $5 \times 5$ , **Number of Filters**: $40$ , **Stride**: $2$ , **Padding**: $0$ .  
    - **Output Dimensions**:
-     \[
-     H' = \frac{H - F + 2P}{S} + 1 = \frac{17 - 5 + 0}{2} + 1 = 7
-     \]
-     \[
-     W' = \frac{W - F + 2P}{S} + 1 = \frac{17 - 5 + 0}{2} + 1 = 7
-     \]
-   - Channels: \(40\).  
-   - **Output**: \(7 \times 7 \times 40\).
+     $H' = \frac{H - F + 2P}{S} + 1 = \frac{17 - 5 + 0}{2} + 1 = 7$
+     $W' = \frac{W - F + 2P}{S} + 1 = \frac{17 - 5 + 0}{2} + 1 = 7$
+   - Channels: $40$ .  
+   - **Output**: $7 \times 7 \times 40$ .
 
 5. **Fully Connected Layer**  
    - The output of Layer 3 is flattened into a 1D vector:  
-     \[
-     7 \times 7 \times 40 = 1960
-     \]
+     $7 \times 7 \times 40 = 1960$
    - This vector is passed to the fully connected layer, where the dimension depends on the number of neurons in the fully connected layer. If unspecified, the fully connected layer's output is typically a vector of size equal to the number of classes or desired outputs.
 
 
@@ -408,13 +391,11 @@ Gradient Descent works by iteratively adjusting the parameters of the model in o
 
 3. **Update the Parameters**:  
    Update the parameters by subtracting the gradient (scaled by a learning rate) from the current values. The formula for updating the parameters is:
-   \[
-   \theta = \theta - \eta \nabla J(\theta)
-   \]
+   $\theta = \theta - \eta \nabla J(\theta)$
    Where:
-   - \( \theta \) represents the parameters (weights and biases).
-   - \( \eta \) is the learning rate (a small positive value).
-   - \( \nabla J(\theta) \) is the gradient of the loss function with respect to the parameters.
+   - $\theta$  represents the parameters (weights and biases).
+   - $\eta$  is the learning rate (a small positive value).
+   - $\nabla J(\theta)$  is the gradient of the loss function with respect to the parameters.
 
 4. **Repeat**:  
    Repeat the above steps until the model converges (i.e., the change in the loss function becomes very small or reaches a predefined number of iterations).
@@ -431,10 +412,8 @@ Gradient Descent works by iteratively adjusting the parameters of the model in o
      - It can be very slow and computationally expensive, especially with large datasets, because the model has to process all the data before updating the parameters.
      - It might not be suitable for real-time or online learning.
    - **Formula**:  
-     \[
-     \theta = \theta - \frac{\eta}{m} \sum_{i=1}^{m} \nabla J(\theta, x^{(i)}, y^{(i)})
-     \]
-     Where \( m \) is the number of training examples, and \( x^{(i)} \), \( y^{(i)} \) are the input features and corresponding labels.
+     $\theta = \theta - \frac{\eta}{m} \sum_{i=1}^{m} \nabla J(\theta, x^{(i)}, y^{(i)})$
+     Where $m$  is the number of training examples, and $x^{(i)}$ , $y^{(i)}$  are the input features and corresponding labels.
 
 2. **Stochastic Gradient Descent (SGD)**  
    - **How it works**:  
@@ -446,10 +425,8 @@ Gradient Descent works by iteratively adjusting the parameters of the model in o
      - The updates can be noisy and lead to a more erratic convergence.
      - May not converge to the true global minimum, and might oscillate around the minimum.
    - **Formula**:  
-     \[
-     \theta = \theta - \eta \nabla J(\theta, x^{(i)}, y^{(i)})
-     \]
-     Where \( x^{(i)} \), \( y^{(i)} \) is a single data point from the dataset.
+     $\theta = \theta - \eta \nabla J(\theta, x^{(i)}, y^{(i)})$
+     Where $x^{(i)}$ , $y^{(i)}$  is a single data point from the dataset.
 
 3. **Mini-Batch Gradient Descent**  
    - **How it works**:  
@@ -461,10 +438,8 @@ Gradient Descent works by iteratively adjusting the parameters of the model in o
    - **Disadvantages**:  
      - The choice of mini-batch size is crucial; a very small size could lead to noisy updates, while a very large size could cause it to behave like Batch Gradient Descent.
    - **Formula**:  
-     \[
-     \theta = \theta - \frac{\eta}{m} \sum_{i=1}^{m} \nabla J(\theta, x^{(i)}, y^{(i)})
-     \]
-     Where \( m \) is the size of the mini-batch.
+     $\theta = \theta - \frac{\eta}{m} \sum_{i=1}^{m} \nabla J(\theta, x^{(i)}, y^{(i)})$
+     Where $m$  is the size of the mini-batch.
 
 **Summary of Key Differences**
 
@@ -504,7 +479,7 @@ Ans.
 
 2. **Exponential Decay**
    - **How**: Learning rate decreases exponentially over time.
-   - **Formula**: \( \text{Learning Rate} = \text{Initial Rate} \times e^{-\text{decay rate} \times \text{epoch}} \)
+   - **Formula**: $\text{Learning Rate} = \text{Initial Rate} \times e^{-\text{decay rate} \times \text{epoch}}$ 
    - **Pros**: Smooth and continuous.
    - **Cons**: Needs careful tuning.
 
@@ -599,6 +574,8 @@ Ans.
 - Using a linear model to fit a highly non-linear dataset.
 - Setting a low number of training epochs.
 
+![alt text](image-33.png)
+
 ---
 
 #### Overfitting
@@ -615,7 +592,9 @@ Ans.
 - Too many parameters relative to the amount of training data available.
 - Training the model for too many epochs, leading to memorization of the training data.
 
----
+![alt text](image-34.png)
+
+--- 
 
 #### The Trade-off Between Underfitting and Overfitting
 **Objective**: The goal is to find the right balance between underfitting and overfitting, enabling the model to generalize well to unseen data.
@@ -702,24 +681,18 @@ To calculate the probability distribution using the SoftMax activation function 
 
 1. **SoftMax Activation Function**:
 The SoftMax function for each neuron is defined as:
-\[
-P_i = \frac{e^{Z_i}}{\sum_{j} e^{Z_j}}
-\]
-where \( P_i \) is the probability for class \( i \), \( Z_i \) is the value from the output layer for class \( i \), and the sum is over all classes.
+$P_i = \frac{e^{Z_i}}{\sum_{j} e^{Z_j}}$ 
+where $P_i$  is the probability for class $i$ , $Z_i$  is the value from the output layer for class $i$ , and the sum is over all classes.
 
-Given \( Z_1 = 2.33 \), \( Z_2 = -1.46 \), and \( Z_3 = 0.56 \), calculate \( e^{Z_1} \), \( e^{Z_2} \), and \( e^{Z_3} \), then normalize them.
+Given $Z_1 = 2.33$ , $Z_2 = -1.46$ , and $Z_3 = 0.56$ , calculate $e^{Z_1}$ , $e^{Z_2}$ , and $e^{Z_3}$ , then normalize them.
 
 2. **Compute Exponentials**:
-\[
-e^{Z_1} = e^{2.33}, \quad e^{Z_2} = e^{-1.46}, \quad e^{Z_3} = e^{0.56}
-\]
+$e^{Z_1} = e^{2.33}, \quad e^{Z_2} = e^{-1.46}, \quad e^{Z_3} = e^{0.56}$ 
 
 3. **Normalize Probabilities**:
-\[
-P_1 = \frac{e^{Z_1}}{e^{Z_1} + e^{Z_2} + e^{Z_3}}, \quad
+$P_1 = \frac{e^{Z_1}}{e^{Z_1} + e^{Z_2} + e^{Z_3}}, \quad
 P_2 = \frac{e^{Z_2}}{e^{Z_1} + e^{Z_2} + e^{Z_3}}, \quad
-P_3 = \frac{e^{Z_3}}{e^{Z_1} + e^{Z_2} + e^{Z_3}}
-\]
+P_3 = \frac{e^{Z_3}}{e^{Z_1} + e^{Z_2} + e^{Z_3}}$ 
 
 4. **Determine the Class**:
 The class with the highest probability corresponds to the predicted output.
@@ -728,11 +701,11 @@ Let me calculate these values.
 
 The SoftMax probabilities for each class are:
 
-- \( P_1 = 0.8383 \)
-- \( P_2 = 0.0189 \)
-- \( P_3 = 0.1428 \)
+- $P_1 = 0.8383$ 
+- $P_2 = 0.0189$ 
+- $P_3 = 0.1428$ 
 
-The predicted class is **Class 1** since it has the highest probability (\( P_1 = 0.8383 \)).
+The predicted class is **Class 1** since it has the highest probability ($P_1 = 0.8383$ ).
 
 ---
 
@@ -755,97 +728,63 @@ The diagram represents a simple Recurrent Neural Network (RNN) structure. Let's 
 
 
 **Given**:
-- \( f(x) \):
-  \[
-  f(x) =
+- $f(x)$ :
+  $f(x) =
   \begin{cases}
     0 & \text{if } x < 0, \\
     1 & \text{if } x \geq 0.
-  \end{cases}
-  \]
-- \( g(x) = |x| \): Absolute value of \( x \).
+  \end{cases}$ 
+- $g(x) = |x|$ : Absolute value of $x$ .
 - Weights and biases:
-  - \( W_1 = 1 \), \( W_2 = 1 \), \( b_2 = -1 \),
-  - \( W_3 = 1 \), \( b_3 = 0 \),
-  - \( W_4 = 1 \), \( b_4 = 0 \),
-  - Initial hidden state \( h_{t-1} = 0 \).
+  - $W_1 = 1$ , $W_2 = 1$ , $b_2 = -1$ ,
+  - $W_3 = 1$ , $b_3 = 0$ ,
+  - $W_4 = 1$ , $b_4 = 0$ ,
+  - Initial hidden state $h_{t-1} = 0$ .
 
 
 #### Hidden State Equation
-At each time step \( t \), the hidden state \( h_t \) is given by:
-\[
-h_t = f(W_1 x_t + W_2 h_{t-1} + b_2)
-\]
+At each time step $t$ , the hidden state $h_t$  is given by:
+$h_t = f(W_1 x_t + W_2 h_{t-1} + b_2)$ 
 
 ---
 
 #### Output Equation
-The output \( y_t \) at each time step is given by:
-\[
-y_t = g(W_3 h_t + b_3)
-\]
+The output $y_t$  at each time step is given by:
+$y_t = g(W_3 h_t + b_3)$ 
 
-Substitute \( g(x) = |x| \):
-\[
-y_t = |W_3 h_t + b_3|
-\]
+Substitute $g(x) = |x|$ :
+$y_t = |W_3 h_t + b_3|$ 
 
 ---
 
 #### Process the Input Sequence
-The input sequence is \( x = [0, 1, 1, 0] \). We'll calculate \( h_t \) and \( y_t \) for each time step.
+The input sequence is $x = [0, 1, 1, 0]$ . We'll calculate $h_t$  and $y_t$  for each time step.
 
-1. **For \( t = 1 \):**
-   \[
-   h_1 = f(W_1 x_1 + W_2 h_0 + b_2)
-   \]
-   \[
-   h_1 = f(1 \cdot 0 + 1 \cdot 0 - 1) = f(-1) = 0
-   \]
-   \[
-   y_1 = |W_3 h_1 + b_3| = |1 \cdot 0 + 0| = 0
-   \]
+1. **For $t = 1$ :**
+   $h_1 = f(W_1 x_1 + W_2 h_0 + b_2)$
+   $h_1 = f(1 \cdot 0 + 1 \cdot 0 - 1) = f(-1) = 0$
+   $y_1 = |W_3 h_1 + b_3| = |1 \cdot 0 + 0| = 0$
 
-2. **For \( t = 2 \):**
-   \[
-   h_2 = f(W_1 x_2 + W_2 h_1 + b_2)
-   \]
-   \[
-   h_2 = f(1 \cdot 1 + 1 \cdot 0 - 1) = f(0) = 1
-   \]
-   \[
-   y_2 = |W_3 h_2 + b_3| = |1 \cdot 1 + 0| = 1
-   \]
+2. **For $t = 2$ :**
+   $h_2 = f(W_1 x_2 + W_2 h_1 + b_2)$
+   $h_2 = f(1 \cdot 1 + 1 \cdot 0 - 1) = f(0) = 1$
+   $y_2 = |W_3 h_2 + b_3| = |1 \cdot 1 + 0| = 1$
 
-3. **For \( t = 3 \):**
-   \[
-   h_3 = f(W_1 x_3 + W_2 h_2 + b_2)
-   \]
-   \[
-   h_3 = f(1 \cdot 1 + 1 \cdot 1 - 1) = f(1) = 1
-   \]
-   \[
-   y_3 = |W_3 h_3 + b_3| = |1 \cdot 1 + 0| = 1
-   \]
+3. **For $t = 3$ :**
+   $h_3 = f(W_1 x_3 + W_2 h_2 + b_2)$
+   $h_3 = f(1 \cdot 1 + 1 \cdot 1 - 1) = f(1) = 1$
+   $y_3 = |W_3 h_3 + b_3| = |1 \cdot 1 + 0| = 1$
 
-4. **For \( t = 4 \):**
-   \[
-   h_4 = f(W_1 x_4 + W_2 h_3 + b_2)
-   \]
-   \[
-   h_4 = f(1 \cdot 0 + 1 \cdot 1 - 1) = f(0) = 1
-   \]
-   \[
-   y_4 = |W_3 h_4 + b_3| = |1 \cdot 1 + 0| = 1
-   \]
+4. **For $t = 4$ :**
+   $h_4 = f(W_1 x_4 + W_2 h_3 + b_2)$
+   $h_4 = f(1 \cdot 0 + 1 \cdot 1 - 1) = f(0) = 1$
+   $y_4 = |W_3 h_4 + b_3| = |1 \cdot 1 + 0| = 1$
 
 
 
 #####  Output Sequence
 The output sequence is:
-\[
-y = [0, 1, 1, 1]
-\]
+$y = [0, 1, 1, 1]$ 
 
 Let me know if you'd like further clarification!
 
@@ -874,14 +813,12 @@ Residual Networks (ResNets) are a type of deep neural network architecture intro
 
 
 **Key Idea of ResNets: Residual Learning**
-Instead of trying to learn the desired mapping \( H(x) \) directly, ResNets learn the **residual mapping** \( F(x) = H(x) - x \). This means:
-\[
-H(x) = F(x) + x
-\]
+Instead of trying to learn the desired mapping $H(x)$  directly, ResNets learn the **residual mapping** $F(x) = H(x) - x$ . This means:
+$H(x) = F(x) + x$ 
 where:
-- \( x \): Input to a layer
-- \( F(x) \): Residual mapping learned by the network
-- \( H(x) \): Final desired output of the layer
+- $x$ : Input to a layer
+- $F(x)$ : Residual mapping learned by the network
+- $H(x)$ : Final desired output of the layer
 
 By reformulating the problem in this way, the network learns the residuals, which are often easier to optimize than the direct mapping.
 
@@ -895,21 +832,19 @@ The basic residual block consists of:
 2. A **skip connection** that bypasses these layers and adds the input directly to the output.
 
 **Mathematical Representation:**
-\[
-y = F(x, \{W_i\}) + x
-\]
+$y = F(x, \{W_i\}) + x$ 
 where:
-- \( x \): Input
-- \( F(x, \{W_i\}) \): Transformation applied to \( x \) (e.g., convolution, batch normalization, and activation)
-- \( y \): Output of the block
-- \( W_i \): Weights of the convolution layers
+- $x$ : Input
+- $F(x, \{W_i\})$ : Transformation applied to $x$  (e.g., convolution, batch normalization, and activation)
+- $y$ : Output of the block
+- $W_i$ : Weights of the convolution layers
 
 
 **Detailed Explanation of a Basic Residual Block**
-1. **Input:** The input \( x \) is fed into the block.
+1. **Input:** The input $x$  is fed into the block.
 2. **First Convolution:** A convolution layer applies filters to the input, followed by Batch Normalization and a ReLU activation.
 3. **Second Convolution:** Another convolution layer is applied to the output of the first, followed by Batch Normalization.
-4. **Skip Connection:** The original input \( x \) is added to the output of the second convolution (element-wise addition).
+4. **Skip Connection:** The original input $x$  is added to the output of the second convolution (element-wise addition).
 5. **Output:** The result is passed to the next layer.
 
 **Diagram:**
