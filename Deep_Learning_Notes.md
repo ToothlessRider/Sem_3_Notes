@@ -23,11 +23,11 @@ To create a decision boundary for the **OR** function implemented using a McCull
 
 ### **OR Function**
 The output of the OR function is defined as:
-$y = 
+$$y = 
 \begin{cases} 
 1 & \text{if } x_1 + x_2 + x_3 \geq \theta, \\ 
 0 & \text{if } x_1 + x_2 + x_3 < \theta.
-\end{cases}$
+\end{cases}$$
 
 For an OR gate, the threshold ( $\theta$ ) is **1** because at least one input must be 1 for the output to be 1.
 
@@ -224,11 +224,11 @@ Ans.
 6. **Leaky ReLU (Rectified Linear Unit) Activation Function**  
 
    - **Formula**:  
-      $\text{Leaky ReLU}(x) = 
+      $$\text{Leaky ReLU}(x) = 
       \begin{cases} 
       x & \text{if } x > 0, \\
       \alpha x & \text{if } x \leq 0, 
-      \end{cases}$
+      \end{cases}$$
    - **Range**:  
    $(- \infty, \infty)$ .  
 
