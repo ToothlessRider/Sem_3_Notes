@@ -220,11 +220,7 @@ Ans.
 6. **Leaky ReLU (Rectified Linear Unit) Activation Function**  
 
    - **Formula**:  
-   $\text{Leaky ReLU}(x) = 
-   \begin{cases} 
-   x & \text{if } x > 0 \\ 
-   \alpha x & \text{if } x \leq 0 
-   \end{cases}$
+   $\text{Leaky ReLU}(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha x & \text{if } x \leq 0 \end{cases}$
    Here, $\alpha$  (typically a small positive value like 0.01) controls the slope for negative inputs.
    
    - **Range**:  
@@ -883,6 +879,94 @@ ResNet-50 is a commonly used version with 50 layers. It uses:
 
 --- 
 
-Q. 
+
+#### **Q1.**  
+**a. Explain McCulloch Pitts Neuron Model.** *(5 Marks)*  
+
+**Answer:**  
+
+
+---
+
+**b. Explain the RMSprop optimization algorithm.** *(5 Marks)*  
+
+**Answer:**  
+
+---
+
+**c. What are the applications of a Deep Neural Network (DNN)? Explain any two in detail.** *(5 Marks)*  
+
+**Answer:**  
+
+---
+
+**d. Explain any one unsupervised learning network.** *(5 Marks)*  
+
+**Answer:**  
+
+---
+
+#### **Q2.**  
+**a. What is regularization in deep learning?** *(2 Marks)*  
+
+**Answer:**  
+
+---
+
+**b. Explain two ways to deal with the vanishing gradient problem in a Deep Neural Network.** *(2 Marks)*  
+
+**Answer:**  
+
+---
+
+**c. What are the differences between Machine Learning and Deep Learning?** *(4 Marks)*  
+
+**Answer:**  
+
+---
+
+**d. Which are different techniques of regularization in deep learning? Explain any two regularization techniques.** *(10 Marks)*  
+
+**Answer:**  
+
+---
+
+#### **Q3.**  
+**a. Explain the deep neural network concept of underfitting, overfitting, and the trade-off between them.** *(6 Marks)*  
+
+**Answer:**  
+
+---
+
+**b. What is the use of Gradient Descent optimization algorithm? Explain Gradient Descent algorithm in detail.** *(6 Marks)*  
+
+**Answer:**  
+
+---
+
+**c. Give an example of learning the XOR function with a multilayer neural network. Assume random initialization of weights.** *(8 Marks)*  
+
+**Answer:**  
+
+---
+
+#### **Q4.**  
+**a. Can we use CNN to perform Dimensionality Reduction? If yes, then which layer is responsible for dimensionality reduction particularly in CNN?** *(8 Marks)*  
+
+**Answer:**  
+
+---
+
+**b. Explain the different types of layers in CNN.** *(8 Marks)*  
+
+**Answer:**  
+
+---
+
+**c. What is ResNets? What problem does it solve? Explain in detail any one block of it.** *(10 Marks)*  
+
+**Answer:**  
+
+---
 
 
