@@ -22,7 +22,7 @@ Ans.
 To create a decision boundary for the **OR** function implemented using a McCulloch-Pitts neuron with three inputs ($x_1$, $x_2$, $x_3$), we consider the following steps:
 
 ### **OR Function**
-The output of the OR function is defined as:
+The output of the OR function is defined as:<br>
 ![alt text](image-36.png)
 
 For an OR gate, the threshold ( $\theta$ ) is **1** because at least one input must be 1 for the output to be 1.
@@ -702,7 +702,14 @@ The predicted class is **Class 1** since it has the highest probability ($P_1 = 
 
 
 Q5. b. **The following diagram depicts the RNN, where xt, ht-1, ht, and yt are all scalars, as a state machine. Suppose that f and g are the activation functions for the first layer, second layer hidden units and output respectively. g(x) is mod of x. Write the equations for the hidden states and output at each time step. Given input 0110 what is the output?** 
-**Given that, W * 1 = 1 W * 2 = 1 , b * 2 = - 1 , W * 3 = 1 , b * 3 = 0 , W * 4 = 1 b * 4 = 0 and other parameters initialized to zero.**
+**Given the following values**:
+
+- $W_1 = 1$ , $b_1 = 2 = 1$ 
+- $b_2 = -1$ 
+- $W_3 = 1$ , $b_3 = 0$ 
+- $W_4 = 1$ , $b_4 = 0$ 
+**and the other parameters being initialized to zero.**<br>
+
 ![alt text](image-37.png)
 
 $g(x) = |x|$
@@ -714,7 +721,7 @@ Ans.
 The diagram represents a simple Recurrent Neural Network (RNN) structure. Let's break this problem into steps:
 
 
-**Given**:
+**Given**: <br>
 ![alt text](image-37.png)
 - $g(x) = |x|$ : Absolute value of $x$ .
 - Weights and biases:
